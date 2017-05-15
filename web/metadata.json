@@ -120,7 +120,7 @@
         },
         {
           "name": "time",
-          "type": "String",
+          "type": "DatePicker",
           "info": "Date Picker",
           "required": true
         }
