@@ -120,8 +120,8 @@
         },
         {
           "name": "time",
-          "type": "DatePicker",
-          "info": "Datapicker",
+          "type": "String",
+          "info": "Date Picker",
           "required": true
         }
       ],
