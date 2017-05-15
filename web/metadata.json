@@ -1,0 +1,96 @@
+{
+  "package": "ZendeskCore",
+  "tagline": "ZendeskCore API",
+  "description": "Create, edit and manage customer support tickets.",
+  "image": "https://logo.clearbit.com/zendesk.com?s=128",
+  "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-ZendeskCore-Package",
+  "keywords": [
+    "API",
+    "customer",
+    "marketing",
+    "service",
+    "support",
+    "ticket"
+  ],
+  "accounts": {
+    "domain": "zendesk.com",
+    "credentials": [
+      "clientId",
+      "clientSecret"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "getAccessToken",
+      "description": "Get AccessToken",
+      "method": "POST",
+      "url": "/oauth2/v4/token",
+      "args": [
+        {
+          "name": "clientId",
+          "type": "credentials",
+          "info": "Client ID",
+          "required": true
+        },
+        {
+          "name": "clientSecret",
+          "type": "credentials",
+          "info": "Client secret",
+          "required": true
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "info": "Code you received from Google after the user granted access",
+          "required": true
+        },
+        {
+          "name": "redirectUri",
+          "type": "String",
+          "info": "The same redirect URL as in received Code step.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getMe",
+      "description": "Gets information about the user, the user's Drive, and system capabilities.",
+      "method": "GET",
+      "url": "https://www.googleapis.com/drive/v3/about",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token. Use getAccessToken to get it",
+          "required": true
+        },
+        {
+          "name": "fields",
+          "type": "",
+          "info": "",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    }
+  ]
+}
