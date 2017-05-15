@@ -66,7 +66,7 @@
       "name": "getMe",
       "description": "Gets information about the user, the user's Drive, and system capabilities.",
       "method": "GET",
-      "url": "https://www.googleapis.com/drive/v3/about",
+      "url": "https://www.googleapis.com/drive/v3/about?fields={fields}",
       "args": [
         {
           "name": "accessToken",
@@ -76,9 +76,17 @@
         },
         {
           "name": "fields",
-          "type": "",
-          "info": "",
-          "required": false
+          "type": "Array",
+          "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+          "required": true,
+          "structure": [
+            {
+              "name": "field",
+              "type": "String",
+              "description": "Field name",
+              "placeholder": "test placeholder"
+            }
+          ]
         }
       ],
       "callbacks": [

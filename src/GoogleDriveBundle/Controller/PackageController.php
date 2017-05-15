@@ -54,7 +54,7 @@ class PackageController extends Controller
             $validData = $manager->getValidData();
             $validData['grant_type'] = 'authorization_code';
 
-            $url = $manager->createFullUrl('https://www.googleapis.com', $validData);
+            $url = $manager->createFullUrl($validData, 'https://www.googleapis.com');
             $headers['Content-Type'] = "application/x-www-form-urlencoded";
             $result = $manager->send($url, $validData, $headers);
         } catch (PackageException $exception) {

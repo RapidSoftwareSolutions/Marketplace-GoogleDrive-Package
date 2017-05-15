@@ -62,7 +62,7 @@ class Manager
     }
 
 
-    public function createFullUrl($url = '', &$data)
+    public function createFullUrl(&$data, $url = '')
     {
         $url = $url . $this->currentBlockMetadata['url'];
         // like "https://{domain}.host.com" . "/getTicket/{ticket_id}"
