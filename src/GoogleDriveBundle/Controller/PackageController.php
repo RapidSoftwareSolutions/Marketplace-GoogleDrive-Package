@@ -81,7 +81,7 @@ class PackageController extends Controller
 
             $url = $manager->createFullUrl($validData);
             $result = $manager->send($url, $validData, $headers);
-            $result['test']['original'] = $validData['time'];
+            $result['contextWrites']['to']['time'] = $validData['time'];
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
