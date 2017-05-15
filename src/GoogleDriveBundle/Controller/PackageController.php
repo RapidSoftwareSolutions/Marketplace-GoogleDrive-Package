@@ -67,6 +67,31 @@ class PackageController extends Controller
     }
 
     /**
+     * @Route("/testTime")
+     * @Method("POST")
+     * @return JsonResponse
+     */
+    public function testTime() {
+        try {
+            $manager = $this->get('manager');
+            $manager->setBlockName(__FUNCTION__);
+
+            $validData = $manager->getValidData();
+            $headers = $manager->createHeaders($validData);
+
+            $url = $manager->createFullUrl($validData);
+            $result = $manager->send($url, $validData, $headers);
+            $result['test']['original'] = $validData['time'];
+        } catch (PackageException $exception) {
+            $result = $this->createPackageExceptionResponse($exception);
+        } catch (RequiredFieldException $exception) {
+            $result = $this->createRequiredFieldExceptionResponse($exception);
+        }
+
+        return new JsonResponse($result);
+    }
+
+    /**
      * @Route("/{blockName}", requirements={"blockName" = "\w+"})
      * @Method("POST")
      *
