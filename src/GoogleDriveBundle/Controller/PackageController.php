@@ -19,12 +19,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Class PackageController
- * @Route("/api/GoogleDrive")
+ * @Route("/api")
  */
 class PackageController extends Controller
 {
     /**
-     * @Route("/", name="getMetadata")
+     * @Route("/GoogleDrive", name="getMetadata")
      * @Method("GET")
      *
      * @return JsonResponse
@@ -41,7 +41,7 @@ class PackageController extends Controller
     }
 
     /**
-     * @Route("/getAccessToken")
+     * @Route("/GoogleDrive/getAccessToken")
      * @Method("POST")
      *
      * @return JsonResponse
@@ -56,7 +56,8 @@ class PackageController extends Controller
 
             $url = $manager->createFullUrl($validData, 'https://www.googleapis.com');
             $headers['Content-Type'] = "application/x-www-form-urlencoded";
-            $result = $manager->send($url, $validData, $headers);
+            $urlParams = [];
+            $result = $manager->send($url, $urlParams, $validData, $headers);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -66,22 +67,18 @@ class PackageController extends Controller
         return new JsonResponse($result);
     }
 
-    /**
-     * @Route("/testTime")
-     * @Method("POST")
-     * @return JsonResponse
-     */
-    public function testTime() {
+    public function revokeAccessToken() {
         try {
             $manager = $this->get('manager');
             $manager->setBlockName(__FUNCTION__);
 
             $validData = $manager->getValidData();
-            $headers = $manager->createHeaders($validData);
+            $validData['grant_type'] = 'authorization_code';
 
             $url = $manager->createFullUrl($validData);
-            $result = $manager->send($url, $validData, $headers);
-            $result['contextWrites']['to']['time'] = $validData['time'];
+            $headers['Content-Type'] = "application/x-www-form-urlencoded";
+            $urlParams = [];
+            $result = $manager->send($url, $urlParams, $validData, $headers);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -92,7 +89,7 @@ class PackageController extends Controller
     }
 
     /**
-     * @Route("/{blockName}", requirements={"blockName" = "\w+"})
+     * @Route("/GoogleDrive/{blockName}", requirements={"blockName" = "\w+"})
      * @Method("POST")
      *
      * @param null $blockName
@@ -104,11 +101,14 @@ class PackageController extends Controller
             $manager = $this->get('manager');
             $manager->setBlockName($blockName);
 
-            $validData = $manager->getValidData();
-            $url = $manager->createFullUrl($validData);
-            $headers = $manager->createHeaders($validData);
+//            $validData = $manager->getValidData();
+            $bodyParams = $manager->getBodyParams();
+            $urlParams = $manager->getUrlParams();
 
-            $result = $manager->send($url, $validData, $headers);
+            $url = $manager->createFullUrl($bodyParams);
+            $headers = $this->createHeaders($bodyParams);
+
+            $result = $manager->send($url, $urlParams, $bodyParams, $headers);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -128,6 +128,16 @@ class PackageController extends Controller
         }
 
         return new JsonResponse($result);
+    }
+
+    private function createHeaders(&$data)
+    {
+        $result = [
+            'Authorization' => 'Bearer ' . $data['access_token']
+        ];
+        unset($data['access_token']);
+
+        return $result;
     }
 
     private function createPackageExceptionResponse(PackageException $exception)

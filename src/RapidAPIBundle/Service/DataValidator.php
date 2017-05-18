@@ -26,6 +26,12 @@ class DataValidator
     /** @var array */
     private $parsedValidData = [];
 
+    /** @var array */
+    private $urlParams = [];
+
+    /** @var array */
+    private $bodyParams = [];
+
     /**
      * @param Request $request
      * @param array   $blockMetadata
@@ -50,6 +56,16 @@ class DataValidator
     public function getBlockMetadata()
     {
         return $this->blockMetadata;
+    }
+
+    public function getUrlParams(): array
+    {
+        return $this->urlParams;
+    }
+
+    public function getBodyParams(): array
+    {
+        return $this->bodyParams;
     }
 
     private function parseDataFromRequest()
@@ -92,8 +108,7 @@ class DataValidator
             if (!empty($value)) {
                 return true;
             }
-        }
-        else {
+        } else {
             if (strlen(trim($value)) > 0 && $value) {
                 return true;
             }
@@ -134,11 +149,26 @@ class DataValidator
 
     private function setSingleValidData($paramData, $value, $vendorName)
     {
+//        if (!empty($paramData['wrapName'])) {
+//            $wrapNameList = explode('.', $paramData['wrapName']);
+//            $this->addDepthOfNesting($this->parsedValidData, $wrapNameList, $value, $vendorName, $paramData);
+//        } else {
+//            $this->parsedValidData[$vendorName] = $value;
+//        }
+        if (!empty($paramData['urlParam'])) {
+            $this->setSingleValidVariable($this->urlParams, $value, $vendorName, $paramData);
+        }
+        else {
+            $this->setSingleValidVariable($this->bodyParams, $value, $vendorName, $paramData);
+        }
+    }
+
+    private function setSingleValidVariable(&$data, $value, $vendorName, $paramData) {
         if (!empty($paramData['wrapName'])) {
             $wrapNameList = explode('.', $paramData['wrapName']);
             $this->addDepthOfNesting($this->parsedValidData, $wrapNameList, $value, $vendorName, $paramData);
         } else {
-            $this->parsedValidData[$vendorName] = $value;
+            $data[$vendorName] = $value;
         }
     }
 
@@ -181,8 +211,20 @@ class DataValidator
         if (!empty($paramData['vendorName'])) {
             return $paramData['vendorName'];
         } else {
-            return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $paramData['name']));
+            if ($this->toSnakeCase($paramData)) {
+                return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $paramData['name']));
+            } else {
+                return $paramData['name'];
+            }
         }
+    }
+
+    private function toSnakeCase(array $paramData): bool
+    {
+        if (!empty($paramData['snakeCase']) || !empty($this->blockMetadata['snakeCase'])) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -211,8 +253,7 @@ class DataValidator
             } else {
                 $this->setSingleValidData($paramData, $data, $vendorName);
             }
-        }
-        else {
+        } else {
             $this->setSingleValidData($paramData, $value, $vendorName);
         }
     }
@@ -225,8 +266,7 @@ class DataValidator
         } else {
             if (isset($this->blockMetadata['type']) && $this->blockMetadata['type'] == 'multipart') {
                 $content = fopen($value, 'r');
-            }
-            else {
+            } else {
                 $content = file_get_contents($value);
                 if (isset($paramData['base64encode']) && filter_var($paramData['base64encode'], FILTER_VALIDATE_BOOLEAN) == true) {
                     $content = base64_encode($content);

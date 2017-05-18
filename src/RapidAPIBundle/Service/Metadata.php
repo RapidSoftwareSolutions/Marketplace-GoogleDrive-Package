@@ -22,6 +22,7 @@ class Metadata
      */
     public function __construct()
     {
+        // todo move from RapidAPIBundle into PackageBundle and from there load metadata
         $metaDataContent = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/metadata.json', 'r');
         if (!$metaDataContent) {
             throw new PackageException('Metadata not found');
@@ -39,7 +40,7 @@ class Metadata
     {
         $result = $this->metaDataFull;
         foreach ($result['blocks'] as &$block) {
-            unset($block['method'], $block['url'], $block['type']);
+            unset($block['method'], $block['url'], $block['type'], $block['snakeCase']);
             foreach ($block['args'] as &$param) {
                 unset(
                     $param['wrapName'],
@@ -48,7 +49,10 @@ class Metadata
                     $param['keyValue'],
                     $param['jsonParse'],
                     $param['base64encode'],
-                    $param['toInt']
+                    $param['toInt'],
+                    $param['urlParam'],
+                    $param['snakeCase'],
+                    $param['vendorName']
                 );
             }
         }

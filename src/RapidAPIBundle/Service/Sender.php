@@ -15,7 +15,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Sender
 {
-    public function send($url, $method, $data, $headers, $type)
+    public function send($url, $method, $urlParams, $bodyParams, $headers, $type)
     {
         try {
             $client = new Client(['defaults' => [
@@ -24,7 +24,8 @@ class Sender
             /** @var ResponseInterface $vendorResponse */
             $vendorResponse = $client->$method($url, [
                 'headers' => $headers,
-                $this->getType($type) => $this->getFormattedData($data, $type)
+                'query' => $urlParams,
+                $this->getType($type) => $this->getFormattedData($bodyParams, $type)
             ]);
             if (in_array($vendorResponse->getStatusCode(), range(200, 204))) {
                 $result['callback'] = 'success';
@@ -84,14 +85,19 @@ class Sender
         return $result;
     }
 
-    private function getBinaryData($data) {
+    private function getBinaryData($data)
+    {
         return array_pop($data);
     }
 
-    private function getType($type) {
-        if ($type == 'binary') {
-            return 'body';
-        }
-        return $type;
+    private function getType($type)
+    {
+        return mb_strtolower($type) == 'binary' ? 'body': $type;
     }
+
+    // types: multipart, query, body, json
+    // json
+    // binary -> body
+    // url -> query
+    // multipart -> multipart
 }

@@ -44,29 +44,37 @@ class Manager
         $this->dataValidator->setData($this->request, $this->currentBlockMetadata);
     }
 
-    public function getValidData()
+    public function getValidData(): array
     {
         return $this->dataValidator->getValidData();
     }
 
-    public function send($url, $data, $headers = []) {
+    public function getUrlParams(): array
+    {
+        return $this->dataValidator->getUrlParams();
+    }
+
+    public function getBodyParams(): array
+    {
+        return $this->dataValidator->getBodyParams();
+    }
+
+    public function send($url, $urlParams, $bodyParams, $headers = [])
+    {
         $blockMetadata = $this->dataValidator->getBlockMetadata();
         if (!isset($blockMetadata['type'])) {
             $type = 'json';
-        }
-        else {
+        } else {
             $type = $blockMetadata['type'];
         }
 
-        return $this->sender->send($url, $blockMetadata['method'], $data, $headers, $type);
+        return $this->sender->send($url, $blockMetadata['method'], $urlParams, $bodyParams, $headers, $type);
     }
 
 
     public function createFullUrl(&$data, $url = '')
     {
         $url = $url . $this->currentBlockMetadata['url'];
-        // like "https://{domain}.host.com" . "/getTicket/{ticket_id}"
-        // todo fix: change snake_case to camelCase
         $res = preg_replace_callback(
             '/{(\w+)}/',
             function ($match) use (&$data) {
@@ -82,15 +90,5 @@ class Manager
             },
             $url);
         return $res;
-    }
-
-    public function createHeaders(&$data)
-    {
-        $result = [
-            'Authorization' => 'Bearer ' . $data['access_token']
-        ];
-        unset($data['access_token']);
-
-        return $result;
     }
 }
