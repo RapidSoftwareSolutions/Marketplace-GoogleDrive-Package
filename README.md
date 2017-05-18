@@ -1,6 +1,6 @@
 [![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/GoogleDrive/functions?utm_source=RapidAPIGitHub_GoogleDriveFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)# GoogleDrive Package
 Test description
-* Domain: [https://www.google.com/drive/](https://https://www.google.com/drive/)
+* Domain: [Google Drive](https://https://www.google.com/drive/)
 * Credentials: clientId, clientSecret
 
 ## How to get credentials: 

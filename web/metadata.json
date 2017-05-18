@@ -1,16 +1,13 @@
 {
   "package": "GoogleDrive",
   "tagline": "GoogleDrive API",
-  "description": "Test description",
+  "description": "Read, write, and sync files stored in Google Drive from your mobile and web apps.",
   "image": "https://logo.clearbit.com/google.com?s=128",
   "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-GoogleDrive-Package",
   "keywords": [
     "API",
-    "customer",
-    "marketing",
-    "service",
-    "support",
-    "ticket"
+    "storage",
+    "google"
   ],
   "accounts": {
     "domain": "https://www.google.com/drive/",
