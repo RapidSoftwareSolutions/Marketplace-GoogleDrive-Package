@@ -1,10 +1,10 @@
 [![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/GoogleDrive/functions?utm_source=RapidAPIGitHub_GoogleDriveFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)# GoogleDrive Package
-Test description
+Read, write, and sync files stored in Google Drive from your mobile and web apps.
 * Domain: [Google Drive](https://https://www.google.com/drive/)
 * Credentials: clientId, clientSecret
 
 ## How to get credentials: 
-1. Item one
+1. Get clientId and clientSecret from Google Developer Console
  
 ## GoogleDrive.getAccessToken
 Get AccessToken
@@ -15,6 +15,22 @@ Get AccessToken
 | clientSecret| credentials| Client secret
 | code        | String     | Code you received from Google after the user granted access
 | redirectUri | String     | The same redirect URL as in received Code step.
+
+## GoogleDrive.refreshToken
+Get new accessToken by refreshToken
+
+| Field       | Type       | Description
+|-------------|------------|----------
+| clientId    | credentials| Client ID
+| clientSecret| credentials| Client secret
+| refreshToken| String     | A token that you can use to obtain a new access token. Refresh tokens are valid until the user revokes access. Again, this field is only present in this response if you set the access_type parameter to offline in the initial request to Google's authorization server.
+
+## GoogleDrive.revokeAccessToken
+Get new accessToken by refreshToken
+
+| Field| Type  | Description
+|------|-------|----------
+| token| String| The token can be an access token or a refresh token. If the token is an access token and it has a corresponding refresh token, the refresh token will also be revoked.
 
 ## GoogleDrive.getMe
 Gets information about the user, the user's Drive, and system capabilities.
