@@ -16,7 +16,7 @@ Get AccessToken
 | code        | String     | Code you received from Google after the user granted access
 | redirectUri | String     | The same redirect URL as in received Code step.
 
-## GoogleDrive.refreshToken
+## GoogleDrive.refreshAccessToken
 Get new accessToken by refreshToken
 
 | Field       | Type       | Description
@@ -509,18 +509,3 @@ Updates a Team Drive's metadata
 | backgroundImageFileYCoordinate| Number| xCoordinate of image file. If set also set "backgroundImageFileId", "backgroundImageFileWidth", "backgroundImageFileXCoordinate"
 | colorRgb                      | String| The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
 | themeId                       | String| The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.
-
-## GoogleDrive.refreshAccessToken
-Updates a Team Drive's metadata
-
-| Field                         | Type  | Description
-|-------------------------------|-------|----------
-| accessToken                   | String| Access Token. Use getAccessToken to get it
-| teamDriveId                   | String| The ID of the Team Drive
-| backgroundImageFileId         | String| Id of image file. If set also set "backgroundImageFileWidth", "backgroundImageFileXCoordinate", "backgroundImageFileYCoordinate"
-| backgroundImageFileWidth      | Number| Width of image file. If set also set "backgroundImageFileId", "backgroundImageFileXCoordinate", "backgroundImageFileYCoordinate"
-| backgroundImageFileXCoordinate| Number| xCoordinate of image file. If set also set "backgroundImageFileId", "backgroundImageFileWidth", "backgroundImageFileYCoordinate"
-| backgroundImageFileYCoordinate| Number| xCoordinate of image file. If set also set "backgroundImageFileId", "backgroundImageFileWidth", "backgroundImageFileXCoordinate"
-| colorRgb                      | String| The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
-| themeId                       | String| The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.
-
