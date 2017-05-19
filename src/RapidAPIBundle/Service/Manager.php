@@ -18,9 +18,6 @@ class Manager
     /** @var DataValidator */
     private $dataValidator;
 
-    /** @var Sender */
-    private $sender;
-
     /** @var Metadata */
     private $metadata;
 
@@ -30,10 +27,9 @@ class Manager
     /** @var array */
     private $currentBlockMetadata = [];
 
-    public function __construct(DataValidator $dataValidator, Sender $sender, Metadata $metadata, RequestStack $requestStack)
+    public function __construct(DataValidator $dataValidator, Metadata $metadata, RequestStack $requestStack)
     {
         $this->dataValidator = $dataValidator;
-        $this->sender = $sender;
         $this->request = $requestStack->getCurrentRequest();
         $this->metadata = $metadata;
     }
@@ -59,18 +55,9 @@ class Manager
         return $this->dataValidator->getBodyParams();
     }
 
-    public function send($url, $urlParams, $bodyParams, $headers = [])
-    {
-        $blockMetadata = $this->dataValidator->getBlockMetadata();
-        if (!isset($blockMetadata['type'])) {
-            $type = 'json';
-        } else {
-            $type = $blockMetadata['type'];
-        }
-
-        return $this->sender->send($url, $blockMetadata['method'], $urlParams, $bodyParams, $headers, $type);
+    public function createGuzzleData($url, $headers, $urlParams, $params) {
+        return $this->dataValidator->createGuzzleData($url, $headers, $urlParams, $params);
     }
-
 
     public function createFullUrl(&$data, $url = '')
     {

@@ -157,13 +157,13 @@ class DataValidator
 //        }
         if (!empty($paramData['urlParam'])) {
             $this->setSingleValidVariable($this->urlParams, $value, $vendorName, $paramData);
-        }
-        else {
+        } else {
             $this->setSingleValidVariable($this->bodyParams, $value, $vendorName, $paramData);
         }
     }
 
-    private function setSingleValidVariable(&$data, $value, $vendorName, $paramData) {
+    private function setSingleValidVariable(&$data, $value, $vendorName, $paramData)
+    {
         if (!empty($paramData['wrapName'])) {
             $wrapNameList = explode('.', $paramData['wrapName']);
             $this->addDepthOfNesting($this->parsedValidData, $wrapNameList, $value, $vendorName, $paramData);
@@ -221,10 +221,16 @@ class DataValidator
 
     private function toSnakeCase(array $paramData): bool
     {
-        if (!empty($paramData['snakeCase']) || !empty($this->blockMetadata['snakeCase'])) {
-            return true;
+        $result = false;
+        if (isset($paramData['snakeCase'])) {
+            $result = $paramData['snakeCase'];
+        } else {
+            if (isset($this->blockMetadata['snakeCase'])) {
+                $result = $this->blockMetadata['snakeCase'];
+            }
         }
-        return false;
+
+        return $result;
     }
 
     /**
@@ -327,5 +333,82 @@ class DataValidator
             return $this->dataFromRequest['args'][$paramName];
         }
         return null;
+    }
+
+    private function getMultipartData($data)
+    {
+        $result = [];
+        foreach ($data as $key => $value) {
+            $result[] = [
+                "name" => $key,
+                "contents" => $value
+            ];
+        }
+
+        return $result;
+    }
+
+    private function getBinaryData($data)
+    {
+        return array_pop($data);
+    }
+
+    /**
+     * Create array with headers and params for Guzzle
+     * @param array  $headers
+     * @param array  $urlParam
+     * @param array  $params
+     * @param string $url
+     * @return array
+     */
+    public function createGuzzleData($url, $headers, $urlParam, $params)
+    {
+        // todo refactor
+        $formParamsFlag = false;
+        $method = mb_strtoupper($this->blockMetadata['method']);
+        $result = [];
+        $result['headers'] = $headers;
+        $result['method'] = $method;
+        $result['url'] = $url;
+
+        foreach ($headers as $headerName => $headerValue) {
+            if (mb_strtolower($headerName) == 'content-type' && mb_strtolower($headerValue) == 'application/x-www-form-urlencoded') {
+                $formParamsFlag = true;
+            }
+        }
+
+        if ($method == 'GET') {
+            $result['query'] = $params;
+        } else {
+            if (!empty($urlParam)) {
+                $result['query'] = $urlParam;
+            }
+
+            if ($formParamsFlag) {
+                $result['form_params'] = $params;
+            } else {
+                if (isset($this->blockMetadata['type'])) {
+                    $type = mb_strtoupper($this->blockMetadata['type']);
+                } else {
+                    $type = 'JSON';
+                }
+                switch ($type) {
+                    case 'BINARY':
+                        $result['body'] = $this->getBinaryData($params);
+                        break;
+                    case 'JSON':
+                        $result['json'] = $params;
+                        break;
+                    case 'MULTIPART':
+                        $result['multipart'] = $this->getMultipartData($params);
+                        break;
+                    default:
+                        $result['json'] = $params;
+                        break;
+                }
+            }
+        }
+
+        return $result;
     }
 }

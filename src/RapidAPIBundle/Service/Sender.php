@@ -15,22 +15,22 @@ use Psr\Http\Message\ResponseInterface;
 
 class Sender
 {
-    public function send($url, $method, $urlParams, $bodyParams, $headers, $type)
+    public function send($data)
     {
+        $url = $data['url'];
+        $method = $data['method'];
+        unset($data['url'], $data['method']);
         try {
+            // todo create Guzzle settings
             $client = new Client(['defaults' => [
                 'verify' => false
             ]]);
             /** @var ResponseInterface $vendorResponse */
-            $vendorResponse = $client->$method($url, [
-                'headers' => $headers,
-                'query' => $urlParams,
-                $this->getType($type) => $this->getFormattedData($bodyParams, $type)
-            ]);
+            $vendorResponse = $client->$method($url, $data);
             if (in_array($vendorResponse->getStatusCode(), range(200, 204))) {
                 $result['callback'] = 'success';
                 $vendorResponseBodyContent = $vendorResponse->getBody()->getContents();
-                if (empty(trim($vendorResponseBodyContent))) {
+                if (empty($vendorResponseBodyContent)) {
                     $result['contextWrites']['to'] = $vendorResponse->getReasonPhrase();
                 } else {
                     $result['contextWrites']['to'] = json_decode($vendorResponseBodyContent, true);
@@ -59,45 +59,4 @@ class Sender
 
         return $result;
     }
-
-    private function getFormattedData(array $data, string $type)
-    {
-        $type = mb_strtolower($type);
-        if ($type == 'binary') {
-            return $this->getBinaryData($data);
-        } elseif ($type == 'multipart') {
-            return $this->getMultipartData($data);
-        } else {
-            return $data;
-        }
-    }
-
-    private function getMultipartData($data)
-    {
-        $result = [];
-        foreach ($data as $key => $value) {
-            $result[] = [
-                "name" => $key,
-                "contents" => $value
-            ];
-        }
-
-        return $result;
-    }
-
-    private function getBinaryData($data)
-    {
-        return array_pop($data);
-    }
-
-    private function getType($type)
-    {
-        return mb_strtolower($type) == 'binary' ? 'body': $type;
-    }
-
-    // types: multipart, query, body, json
-    // json
-    // binary -> body
-    // url -> query
-    // multipart -> multipart
 }
