@@ -13,4 +13,4 @@ services:
 
   manager:
     class: RapidAPIBundle\Service\Manager
-    arguments: ["@data_validator", "@sender", "@metadata","@request_stack"]
+    arguments: ["@data_validator", "@metadata","@request_stack"]
