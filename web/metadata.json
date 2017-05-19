@@ -22,6 +22,7 @@
       "description": "Get AccessToken",
       "method": "POST",
       "url": "/oauth2/v4/token",
+      "snakeCase": true,
       "args": [
         {
           "name": "clientId",
@@ -60,6 +61,68 @@
       ]
     },
     {
+      "name": "refreshToken",
+      "description": "Get new accessToken by refreshToken",
+      "method": "POST",
+      "url": "https://www.googleapis.com/oauth2/v4/token",
+      "snakeCase": true,
+      "args": [
+        {
+          "name": "clientId",
+          "type": "credentials",
+          "info": "Client ID",
+          "required": true
+        },
+        {
+          "name": "clientSecret",
+          "type": "credentials",
+          "info": "Client secret",
+          "required": true
+        },
+        {
+          "name": "refreshToken",
+          "type": "String",
+          "info": "A token that you can use to obtain a new access token. Refresh tokens are valid until the user revokes access. Again, this field is only present in this response if you set the access_type parameter to offline in the initial request to Google's authorization server.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "revokeAccessToken",
+      "description": "Get new accessToken by refreshToken",
+      "method": "GET",
+      "url": "https://accounts.google.com/o/oauth2/revoke",
+      "snakeCase": true,
+      "args": [
+        {
+          "name": "token",
+          "type": "String",
+          "info": "The token can be an access token or a refresh token. If the token is an access token and it has a corresponding refresh token, the refresh token will also be revoked.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
       "name": "getMe",
       "description": "Gets information about the user, the user's Drive, and system capabilities.",
       "method": "GET",
@@ -76,7 +139,6 @@
           "type": "Array",
           "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
           "required": true,
-          "vendorName": "fields",
           "structure": [
             {
               "name": "field",
@@ -114,15 +176,13 @@
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false,
-          "vendorName": "supportsTeamDrives"
+          "required": false
         },
         {
           "name": "teamDriveId",
           "type": "String",
           "info": "The ID of the Team Drive for which the starting pageToken for listing future changes from that Team Drive will be returned.",
-          "required": false,
-          "vendorName": "teamDriveId"
+          "required": false
         }
       ],
       "callbacks": [
@@ -152,64 +212,55 @@
           "name": "pageToken",
           "type": "String",
           "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.",
-          "required": true,
-          "vendorName": "pageToken"
+          "required": true
         },
         {
           "name": "includeCorpusRemovals",
           "type": "Boolean",
           "info": "Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file. (Default: false)",
-          "required": false,
-          "vendorName": "includeCorpusRemovals"
+          "required": false
         },
         {
           "name": "includeRemoved",
           "type": "Boolean",
           "info": "Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access. (Default: true)",
-          "required": false,
-          "vendorName": "includeRemoved"
+          "required": false
         },
         {
           "name": "includeTeamDriveItems",
           "type": "Boolean",
           "info": "Whether Team Drive files or changes should be included in results. (Default: false)",
-          "required": false,
-          "vendorName": "includeTeamDriveItems"
+          "required": false
         },
         {
           "name": "pageSize",
           "type": "Number",
           "info": "The maximum number of changes to return per page. Acceptable values are 1 to 1000, inclusive. (Default: 100)",
-          "required": false,
-          "vendorName": "pageSize"
+          "required": false
         },
         {
           "name": "restrictToMyDrive",
           "type": "Boolean",
           "info": "Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive. (Default: false)",
-          "required": false,
-          "vendorName": "restrictToMyDrive"
+          "required": false
         },
         {
           "name": "spaces",
           "type": "String",
           "info": "A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
-          "required": false,
-          "vendorName": "spaces"
+          "required": false
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false,
-          "vendorName": "supportsTeamDrives"
+          "required": false
         },
         {
           "name": "teamDriveId",
           "type": "String",
           "info": "The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.",
-          "required": false,
-          "vendorName": "teamDriveId"
+          "required": false
         }
       ],
       "callbacks": [
@@ -239,64 +290,55 @@
           "name": "pageToken",
           "type": "String",
           "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.",
-          "required": true,
-          "vendorName": "pageToken"
+          "required": true
         },
         {
           "name": "includeCorpusRemovals",
           "type": "Boolean",
           "info": "Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file. (Default: false)",
-          "required": false,
-          "vendorName": "includeCorpusRemovals"
+          "required": false
         },
         {
           "name": "includeRemoved",
           "type": "Boolean",
           "info": "Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access. (Default: true)",
-          "required": false,
-          "vendorName": "includeRemoved"
+          "required": false
         },
         {
           "name": "includeTeamDriveItems",
           "type": "Boolean",
           "info": "Whether Team Drive files or changes should be included in results. (Default: false)",
-          "required": false,
-          "vendorName": "includeTeamDriveItems"
+          "required": false
         },
         {
           "name": "pageSize",
           "type": "Number",
           "info": "The maximum number of changes to return per page. Acceptable values are 1 to 1000, inclusive. (Default: 100)",
-          "required": false,
-          "vendorName": "pageSize"
+          "required": false
         },
         {
           "name": "restrictToMyDrive",
           "type": "Boolean",
           "info": "Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive. (Default: false)",
-          "required": false,
-          "vendorName": "restrictToMyDrive"
+          "required": false
         },
         {
           "name": "spaces",
           "type": "String",
           "info": "A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
-          "required": false,
-          "vendorName": "spaces"
+          "required": false
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false,
-          "vendorName": "supportsTeamDrives"
+          "required": false
         },
         {
           "name": "teamDriveId",
           "type": "String",
           "info": "The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.",
-          "required": false,
-          "vendorName": "teamDriveId"
+          "required": false
         }
       ],
       "callbacks": [
@@ -410,8 +452,7 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "content",
@@ -461,15 +502,13 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "commentId",
           "type": "String",
           "info": "The ID of the comment.",
-          "required": true,
-          "vendorName": "commentId"
+          "required": true
         }
       ],
       "callbacks": [
@@ -499,15 +538,13 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "commentId",
           "type": "String",
           "info": "The ID of the comment.",
-          "required": true,
-          "vendorName": "commentId"
+          "required": true
         },
         {
           "name": "includeDeleted",
@@ -543,36 +580,31 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "includeDeleted",
           "type": "Boolean",
           "info": "Whether to include deleted comments. Deleted comments will not include their original content. (Default: false)",
-          "required": false,
-          "vendorName": "includeDeleted"
+          "required": false
         },
         {
           "name": "pageSize",
           "type": "Number",
           "info": "The maximum number of comments to return per page. Acceptable values are 1 to 100, inclusive. (Default: 20)",
-          "required": false,
-          "vendorName": "pageSize"
+          "required": false
         },
         {
           "name": "pageToken",
           "type": "String",
           "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
-          "required": false,
-          "vendorName": "pageToken"
+          "required": false
         },
         {
           "name": "startModifiedTime",
           "type": "String",
           "info": "The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).",
-          "required": false,
-          "vendorName": "startModifiedTime"
+          "required": false
         }
       ],
       "callbacks": [
@@ -602,15 +634,13 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "commentId",
           "type": "String",
           "info": "The ID of the comment.",
-          "required": true,
-          "vendorName": "commentId"
+          "required": true
         },
         {
           "name": "content",
@@ -646,15 +676,13 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "ignoreDefaultVisibility",
           "type": "Boolean",
           "info": "Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders. (Default: false)",
           "required": false,
-          "vendorName": "ignoreDefaultVisibility",
           "urlParam": true
         },
         {
@@ -662,7 +690,6 @@
           "type": "Boolean",
           "info": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive. (Default: false)",
           "required": false,
-          "vendorName": "keepRevisionForever",
           "urlParam": true
         },
         {
@@ -670,7 +697,6 @@
           "type": "String",
           "info": "A language hint for OCR processing during image import (ISO 639-1 code).",
           "required": false,
-          "vendorName": "ocrLanguage",
           "urlParam": true
         },
         {
@@ -678,15 +704,13 @@
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
           "required": false,
-          "vendorName": "supportsTeamDrives",
           "urlParam": true
         },
         {
           "name": "appProperties",
           "type": "Array",
           "info": "A collection of arbitrary key-value pairs which are private to the requesting app. Entries with null values are cleared in update and copy requests.",
-          "required": false,
-          "vendorName": "appProperties"
+          "required": false
         },
         {
           "name": "thumbnailImage",
@@ -714,15 +738,13 @@
           "name": "mimeType",
           "type": "String",
           "info": "The MIME type of the file. Drive will attempt to automatically detect an appropriate value from uploaded content if no value is provided. The value cannot be changed unless a new revision is uploaded. If a file is created with a Google Doc MIME type, the uploaded content will be imported if possible. The supported import formats are published in the About resource.",
-          "required": false,
-          "vendorName": "mimeType"
+          "required": false
         },
         {
           "name": "modifiedTime",
           "type": "String",
           "info": "The last time the file was modified by anyone (RFC 3339 date-time). Note that setting modifiedTime will also update modifiedByMeTime for the user.",
-          "required": false,
-          "vendorName": "modifiedTime"
+          "required": false
         },
         {
           "name": "name",
@@ -752,22 +774,19 @@
           "name": "viewedByMeTime",
           "type": "String",
           "info": "The last time the file was viewed by the user (RFC 3339 date-time).",
-          "required": false,
-          "vendorName": "viewedByMeTime"
+          "required": false
         },
         {
           "name": "viewersCanCopyContent",
           "type": "Boolean",
           "info": "Whether users with only reader or commenter permission can copy the file's content. This affects copy, download, and print operations.",
-          "required": false,
-          "vendorName": "viewersCanCopyContent"
+          "required": false
         },
         {
           "name": "writersCanShare",
           "type": "Boolean",
           "info": "Whether users with only writer permission can modify the file's permissions. Not populated for Team Drive files.",
-          "required": false,
-          "vendorName": "writersCanShare"
+          "required": false
         }
       ],
       "callbacks": [
@@ -798,63 +817,55 @@
           "type": "String",
           "info": "The type of upload request to the /upload URI. Acceptable values are: \"media\" - Simple upload. Upload the media only, without any metadata. \"multipart\" - Multipart upload. Upload both the media and its metadata, in a single request. \"resumable\" - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests where the first request includes the metadata.",
           "required": true,
-          "urlParam": true,
-          "vendorName": "uploadType"
+          "urlParam": true
         },
         {
           "name": "ignoreDefaultVisibility",
           "type": "Boolean",
           "info": "Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "ignoreDefaultVisibility"
+          "urlParam": true
         },
         {
           "name": "keepRevisionForever",
           "type": "Boolean",
           "info": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "keepRevisionForever"
+          "urlParam": true
         },
         {
           "name": "ocrLanguage",
           "type": "String",
           "info": "A language hint for OCR processing during image import (ISO 639-1 code).",
           "required": false,
-          "urlParam": true,
-          "vendorName": "ocrLanguage"
+          "urlParam": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "supportsTeamDrives"
+          "urlParam": true
         },
         {
           "name": "useContentAsIndexableText",
           "type": "Boolean",
           "info": "Whether to use the uploaded content as indexable text. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "useContentAsIndexableText"
+          "urlParam": true
         },
         {
           "name": "appProperties",
           "type": "JSON",
           "info": "A collection of arbitrary key-value pairs which are private to the requesting app. Entries with null values are cleared in update and copy requests.",
-          "required": false,
-          "vendorName": "appProperties"
+          "required": false
         },
         {
           "name": "indexableText",
           "type": "String",
           "info": "Text to be indexed for the file to improve fullText queries. This is limited to 128KB in length and may contain HTML elements.",
           "required": false,
-          "wrapName": "contentHints",
-          "vendorName": "indexableText"
+          "wrapName": "contentHints"
         },
         {
           "name": "thumbnailImage",
@@ -869,8 +880,7 @@
           "type": "String",
           "info": "The MIME type of the thumbnail.",
           "required": false,
-          "wrapName": "contentHints.thumbnail",
-          "vendorName": "mimeType"
+          "wrapName": "contentHints.thumbnail"
         }
       ],
       "callbacks": [
@@ -900,16 +910,14 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "supportsTeamDrives"
+          "urlParam": true
         }
       ],
       "callbacks": [
@@ -963,15 +971,13 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "mimeType",
           "type": "String",
           "info": "The MIME type of the format requested for this export.",
-          "required": true,
-          "vendorName": "mimeType"
+          "required": true
         }
       ],
       "callbacks": [
@@ -1037,22 +1043,19 @@
           "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fileId"
+          "required": true
         },
         {
           "name": "acknowledgeAbuse",
           "type": "Boolean",
           "info": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media. (Default: false)",
-          "required": false,
-          "vendorName": "acknowledgeAbuse"
+          "required": false
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false,
-          "vendorName": "supportsTeamDrives"
+          "required": false
         }
       ],
       "callbacks": [
@@ -1094,29 +1097,25 @@
           "name": "includeTeamDriveItems",
           "type": "Boolean",
           "info": "Whether Team Drive items should be included in results. (Default: false)",
-          "required": false,
-          "vendorName": "includeTeamDriveItems"
+          "required": false
         },
         {
           "name": "orderBy",
           "type": "String",
           "info": "A comma-separated list of sort keys. Valid keys are 'createdTime', 'folder', 'modifiedByMeTime', 'modifiedTime', 'name', 'quotaBytesUsed', 'recency', 'sharedWithMeTime', 'starred', and 'viewedByMeTime'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedTime desc,name. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.",
-          "required": false,
-          "vendorName": "orderBy"
+          "required": false
         },
         {
           "name": "pageSize",
           "type": "Number",
           "info": "The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached. Acceptable values are 1 to 1000, inclusive. (Default: 100)",
-          "required": false,
-          "vendorName": "pageSize"
+          "required": false
         },
         {
           "name": "pageToken",
           "type": "String",
           "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
-          "required": false,
-          "vendorName": "pageToken"
+          "required": false
         },
         {
           "name": "query",
@@ -1135,15 +1134,13 @@
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false,
-          "vendorName": "supportsTeamDrives"
+          "required": false
         },
         {
           "name": "teamDriveId",
           "type": "String",
           "info": "ID of Team Drive to search",
-          "required": false,
-          "vendorName": "teamDriveId"
+          "required": false
         }
       ],
       "callbacks": [
@@ -1173,79 +1170,69 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "uploadType",
           "type": "String",
           "info": "The type of upload request to the /upload URI. Acceptable values are: \"media\" - Simple upload. Upload the media only, without any metadata. \"multipart\" - Multipart upload. Upload both the media and its metadata, in a single request. \"resumable\" - Resumable upload. Upload the file in a resumable fashion, using a series of at least two requests where the first request includes the metadata.",
           "required": true,
-          "urlParam": true,
-          "vendorName": "uploadType"
+          "urlParam": true
         },
         {
           "name": "addParents",
           "type": "String",
           "info": "A comma-separated list of parent IDs to add.",
           "required": false,
-          "urlParam": true,
-          "vendorName": "addParents"
+          "urlParam": true
         },
         {
           "name": "keepRevisionForever",
           "type": "Boolean",
           "info": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "keepRevisionForever"
+          "urlParam": true
         },
         {
           "name": "ocrLanguage",
           "type": "String",
           "info": "A language hint for OCR processing during image import (ISO 639-1 code).",
           "required": false,
-          "urlParam": true,
-          "vendorName": "ocrLanguage"
+          "urlParam": true
         },
         {
           "name": "removeParents",
           "type": "String",
           "info": "A comma-separated list of parent IDs to remove.",
           "required": false,
-          "urlParam": true,
-          "vendorName": "removeParents"
+          "urlParam": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "supportsTeamDrives"
+          "urlParam": true
         },
         {
           "name": "useContentAsIndexableText",
           "type": "Boolean",
           "info": "Whether to use the uploaded content as indexable text. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "useContentAsIndexableText"
+          "urlParam": true
         },
         {
           "name": "appProperties",
           "type": "JSON",
           "info": "A collection of arbitrary key-value pairs which are private to the requesting app. Entries with null values are cleared in update and copy requests.",
-          "required": false,
-          "vendorName": "appProperties"
+          "required": false
         },
         {
           "name": "indexableText",
           "type": "String",
           "info": "Text to be indexed for the file to improve fullText queries. This is limited to 128KB in length and may contain HTML elements.",
           "required": false,
-          "wrapName": "contentHints",
-          "vendorName": "indexableText"
+          "wrapName": "contentHints"
         },
         {
           "name": "thumbnailImage",
@@ -1260,8 +1247,7 @@
           "type": "String",
           "info": "The MIME type of the thumbnail.",
           "required": false,
-          "wrapName": "contentHints.thumbnail",
-          "vendorName": "mimeType"
+          "wrapName": "contentHints.thumbnail"
         },
         {
           "name": "description",
@@ -1273,22 +1259,19 @@
           "name": "folderColorRgb",
           "type": "String",
           "info": "The color for a folder as an RGB hex string. The supported colors are published in the folderColorPalette field of the About resource. If an unsupported color is specified, the closest color in the palette will be used instead.",
-          "required": false,
-          "vendorName": "folderColorRgb"
+          "required": false
         },
         {
           "name": "mimeType",
           "type": "String",
           "info": "The MIME type of the file. Drive will attempt to automatically detect an appropriate value from uploaded content if no value is provided. The value cannot be changed unless a new revision is uploaded. If a file is created with a Google Doc MIME type, the uploaded content will be imported if possible. The supported import formats are published in the About resource.",
-          "required": false,
-          "vendorName": "mimeType"
+          "required": false
         },
         {
           "name": "modifiedTime",
           "type": "String",
           "info": "The last time the file was modified by anyone (RFC 3339 date-time). Note that setting modifiedTime will also update modifiedByMeTime for the user.",
-          "required": false,
-          "vendorName": "modifiedTime"
+          "required": false
         },
         {
           "name": "name",
@@ -1300,8 +1283,7 @@
           "name": "originalFilename",
           "type": "String",
           "info": "The original filename of the uploaded content if available, or else the original value of the name field. This is only available for files with binary content in Drive.",
-          "required": false,
-          "vendorName": "originalFilename"
+          "required": false
         },
         {
           "name": "properties",
@@ -1325,22 +1307,19 @@
           "name": "viewedByMeTime",
           "type": "String",
           "info": "The last time the file was viewed by the user (RFC 3339 date-time).",
-          "required": false,
-          "vendorName": "viewedByMeTime"
+          "required": false
         },
         {
           "name": "viewersCanCopyContent",
           "type": "Boolean",
           "info": "Whether users with only reader or commenter permission can copy the file's content. This affects copy, download, and print operations.",
-          "required": false,
-          "vendorName": "viewersCanCopyContent"
+          "required": false
         },
         {
           "name": "writersCanShare",
           "type": "Boolean",
           "info": "Whether users with only writer permission can modify the file's permissions. Not populated for Team Drive files.",
-          "required": false,
-          "vendorName": "writersCanShare"
+          "required": false
         }
       ],
       "callbacks": [
@@ -1370,24 +1349,21 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "acknowledgeAbuse",
           "type": "Boolean",
           "info": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "acknowledgeAbuse"
+          "urlParam": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "supportsTeamDrives"
+          "urlParam": true
         },
         {
           "name": "kind",
@@ -1405,15 +1381,13 @@
           "name": "resourceId",
           "type": "String",
           "info": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.",
-          "required": false,
-          "vendorName": "resourseId"
+          "required": false
         },
         {
           "name": "resourceUri",
           "type": "String",
           "info": "A version-specific identifier for the watched resource.",
-          "required": false,
-          "vendorName": "resourceUri"
+          "required": false
         },
         {
           "name": "token",
@@ -1479,40 +1453,35 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "emailMessage",
           "type": "String",
           "info": "A custom message to include in the notification email.",
           "required": false,
-          "urlParam": true,
-          "vendorName": "emailMessage"
+          "urlParam": true
         },
         {
           "name": "sendNotificationEmail",
           "type": "Boolean",
           "info": "Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.",
           "required": false,
-          "urlParam": true,
-          "vendorName": "sendNotificationEmail"
+          "urlParam": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "supportsTeamDrives"
+          "urlParam": true
         },
         {
           "name": "transferOwnership",
           "type": "Boolean",
           "info": "Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "transferOwnership"
+          "urlParam": true
         },
         {
           "name": "role",
@@ -1530,8 +1499,7 @@
           "name": "allowFileDiscovery",
           "type": "Boolean",
           "info": "Whether the permission allows the file to be discovered through search. This is only applicable for permissions of type domain or anyone.",
-          "required": false,
-          "vendorName": "allowFileDiscovery"
+          "required": false
         },
         {
           "name": "domain",
@@ -1543,8 +1511,7 @@
           "name": "emailAddress",
           "type": "String",
           "info": "The email address of the user or group to which this permission refers.",
-          "required": false,
-          "vendorName": "emailAddress"
+          "required": false
         }
       ],
       "callbacks": [
@@ -1574,23 +1541,20 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "permissionId",
           "type": "String",
           "info": "The ID of the permission.",
-          "required": true,
-          "vendorName": "permissionId"
+          "required": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "supportsTeamDrives"
+          "urlParam": true
         }
       ],
       "callbacks": [
@@ -1620,22 +1584,19 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "permissionId",
           "type": "String",
           "info": "The ID of the permission.",
-          "required": true,
-          "vendorName": "permissionId"
+          "required": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false,
-          "vendorName": "supportsTeamDrives"
+          "required": false
         }
       ],
       "callbacks": [
@@ -1665,29 +1626,25 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "pageSize",
           "type": "Number",
           "info": "The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned. Acceptable values are 1 to 100, inclusive.",
-          "required": false,
-          "vendorName": "pageSize"
+          "required": false
         },
         {
           "name": "pageToken",
           "type": "String",
           "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
-          "required": false,
-          "vendorName": "pageToken"
+          "required": false
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false,
-          "vendorName": "supportsTeamDrives"
+          "required": false
         }
       ],
       "callbacks": [
@@ -1717,46 +1674,40 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "permissionId",
           "type": "String",
           "info": "The ID of the permission.",
-          "required": false,
-          "vendorName": "permissionId"
+          "required": false
         },
         {
           "name": "removeExpiration",
           "type": "Boolean",
           "info": "Whether to remove the expiration date. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "removeExpiration"
+          "urlParam": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "supportsTeamDrives"
+          "urlParam": true
         },
         {
           "name": "transferOwnership",
           "type": "Boolean",
           "info": "Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "transferOwnership"
+          "urlParam": true
         },
         {
           "name": "expirationTime",
           "type": "Number",
           "info": "The time at which this permission will expire (RFC 3339 date-time). Expiration times have the following restrictions: They can only be set on user and group permissions. The time must be in the future. The time cannot be more than a year in the future",
-          "required": false,
-          "vendorName": "expirationTime"
+          "required": false
         },
         {
           "name": "role",
@@ -1792,15 +1743,13 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "commentId",
           "type": "String",
           "info": "The ID of the comment.",
-          "required": true,
-          "vendorName": "commentId"
+          "required": true
         },
         {
           "name": "action",
@@ -1842,22 +1791,19 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "commentId",
           "type": "String",
           "info": "The ID of the comment.",
-          "required": true,
-          "vendorName": "commentId"
+          "required": true
         },
         {
           "name": "replyId",
           "type": "String",
           "info": "The ID of the reply.",
-          "required": true,
-          "vendorName": "replyId"
+          "required": true
         }
       ],
       "callbacks": [
@@ -1887,30 +1833,26 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "commentId",
           "type": "String",
           "info": "The ID of the comment.",
-          "required": true,
-          "vendorName": "commentId"
+          "required": true
         },
         {
           "name": "replyId",
           "type": "String",
           "info": "The ID of the reply.",
-          "required": true,
-          "vendorName": "replyId"
+          "required": true
         },
         {
           "name": "includeDeleted",
           "type": "Boolean",
           "info": "Whether to return deleted replies. Deleted replies will not include their original content. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "includeDeleted"
+          "urlParam": true
         }
       ],
       "callbacks": [
@@ -1940,39 +1882,34 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "commentId",
           "type": "String",
           "info": "The ID of the comment.",
-          "required": true,
-          "vendorName": "commentId"
+          "required": true
         },
         {
           "name": "includeDeleted",
           "type": "Boolean",
           "info": "Whether to return deleted replies. Deleted replies will not include their original content. (Default: false)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "includeDeleted"
+          "urlParam": true
         },
         {
           "name": "pageSize",
           "type": "Number",
           "info": "The maximum number of replies to return per page. Acceptable values are 1 to 100, inclusive. (Default: 20)",
           "required": false,
-          "urlParam": true,
-          "vendorName": "pageSize"
+          "urlParam": true
         },
         {
           "name": "pageToken",
           "type": "String",
           "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
           "required": false,
-          "urlParam": true,
-          "vendorName": "pageToken"
+          "urlParam": true
         }
       ],
       "callbacks": [
@@ -2002,22 +1939,19 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "commentId",
           "type": "String",
           "info": "The ID of the comment.",
-          "required": true,
-          "vendorName": "commentId"
+          "required": true
         },
         {
           "name": "replyId",
           "type": "String",
           "info": "The ID of the reply.",
-          "required": false,
-          "vendorName": "replyId"
+          "required": false
         },
         {
           "name": "content",
@@ -2053,15 +1987,13 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "revisionId",
           "type": "String",
           "info": "The ID of the revision.",
-          "required": true,
-          "vendorName": "revisionId"
+          "required": true
         }
       ],
       "callbacks": [
@@ -2091,15 +2023,13 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "revisionId",
           "type": "String",
           "info": "The ID of the revision.",
-          "required": true,
-          "vendorName": "revisionId"
+          "required": true
         }
       ],
       "callbacks": [
@@ -2129,22 +2059,19 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "pageSize",
           "type": "Number",
           "info": "The maximum number of revisions to return per page. Acceptable values are 1 to 1000, inclusive. (Default: 200)",
-          "required": false,
-          "vendorName": "pageSize"
+          "required": false
         },
         {
           "name": "pageToken",
           "type": "String",
           "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
-          "required": false,
-          "vendorName": "pageToken"
+          "required": false
         }
       ],
       "callbacks": [
@@ -2174,29 +2101,25 @@
           "name": "fieldId",
           "type": "String",
           "info": "The ID of the file.",
-          "required": true,
-          "vendorName": "fieldId"
+          "required": true
         },
         {
           "name": "revisionId",
           "type": "String",
           "info": "The ID of the revision.",
-          "required": true,
-          "vendorName": "revisionId"
+          "required": true
         },
         {
           "name": "keepForever",
           "type": "Boolean",
           "info": "Whether to keep this revision forever, even if it is no longer the head revision. If not set, the revision will be automatically purged 30 days after newer content is uploaded. This can be set on a maximum of 200 revisions for a file. This field is only applicable to files with binary content in Drive.",
-          "required": false,
-          "vendorName": "keepForever"
+          "required": false
         },
         {
           "name": "publishAuto",
           "type": "Boolean",
           "info": "Whether subsequent revisions will be automatically republished. This is only applicable to Google Docs.",
-          "required": false,
-          "vendorName": "publishAuto"
+          "required": false
         },
         {
           "name": "published",
@@ -2208,8 +2131,7 @@
           "name": "publishedOutsideDomain",
           "type": "Boolean",
           "info": "Whether this revision is published outside the domain. This is only applicable to Google Docs.",
-          "required": false,
-          "vendorName": "publishedOutsideDomain"
+          "required": false
         }
       ],
       "callbacks": [
@@ -2240,15 +2162,13 @@
           "type": "String",
           "info": "An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.",
           "required": false,
-          "urlParam": true,
-          "vendorName": "requestId"
+          "urlParam": true
         },
         {
           "name": "themeId",
           "type": "String",
           "info": "The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.",
-          "required": false,
-          "vendorName": "themeId"
+          "required": false
         }
       ],
       "callbacks": [
@@ -2338,15 +2258,13 @@
           "name": "pageSize",
           "type": "Number",
           "info": "Maximum number of Team Drives to return. Acceptable values are 1 to 100, inclusive. (Default: 10)",
-          "required": false,
-          "vendorName": "pageSize"
+          "required": false
         },
         {
           "name": "pageToken",
           "type": "String",
           "info": "Page token for Team Drives.",
-          "required": false,
-          "vendorName": "pageToken"
+          "required": false
         }
       ],
       "callbacks": [
@@ -2376,8 +2294,7 @@
           "name": "teamDriveId",
           "type": "String",
           "info": "The ID of the Team Drive",
-          "required": false,
-          "vendorName": "teamDriveId"
+          "required": false
         },
         {
           "name": "backgroundImageFileId",
@@ -2415,15 +2332,13 @@
           "name": "colorRgb",
           "type": "String",
           "info": "The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.",
-          "required": false,
-          "vendorName": "colorRgb"
+          "required": false
         },
         {
           "name": "themeId",
           "type": "String",
           "info": "The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.",
-          "required": false,
-          "vendorName": "themeId"
+          "required": false
         }
       ],
       "callbacks": [
@@ -2453,8 +2368,7 @@
           "name": "teamDriveId",
           "type": "String",
           "info": "The ID of the Team Drive",
-          "required": false,
-          "vendorName": "teamDriveId"
+          "required": false
         },
         {
           "name": "backgroundImageFileId",
@@ -2492,15 +2406,13 @@
           "name": "colorRgb",
           "type": "String",
           "info": "The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.",
-          "required": false,
-          "vendorName": "colorRgb"
+          "required": false
         },
         {
           "name": "themeId",
           "type": "String",
           "info": "The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.create request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.",
-          "required": false,
-          "vendorName": "themeId"
+          "required": false
         }
       ],
       "callbacks": [

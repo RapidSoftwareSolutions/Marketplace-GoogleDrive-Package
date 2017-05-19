@@ -49,15 +49,20 @@ class PackageController extends Controller
     public function getAccessToken() {
         try {
             $manager = $this->get('manager');
+            $sender = $this->get('sender');
             $manager->setBlockName(__FUNCTION__);
 
-            $validData = $manager->getValidData();
-            $validData['grant_type'] = 'authorization_code';
+            $bodyParams = $manager->getBodyParams();
+            $bodyParams['grant_type'] = 'authorization_code';
+            $urlParams = $manager->getUrlParams();
 
-            $url = $manager->createFullUrl($validData, 'https://www.googleapis.com');
+            $url = $manager->createFullUrl($bodyParams, 'https://www.googleapis.com');
+
             $headers['Content-Type'] = "application/x-www-form-urlencoded";
-            $urlParams = [];
-            $result = $manager->send($url, $urlParams, $validData, $headers);
+
+            $data = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+
+            $result = $sender->send($data);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -67,22 +72,88 @@ class PackageController extends Controller
         return new JsonResponse($result);
     }
 
-    public function revokeAccessToken() {
+    /**
+     * @Route("/GoogleDrive/refreshToken")
+     * @Method("POST")
+     *
+     * @return JsonResponse
+     */
+    public function refreshToken() {
         try {
             $manager = $this->get('manager');
+            $sender = $this->get('sender');
+
             $manager->setBlockName(__FUNCTION__);
 
-            $validData = $manager->getValidData();
-            $validData['grant_type'] = 'authorization_code';
+            $bodyParams = $manager->getBodyParams();
+            $urlParams = $manager->getUrlParams();
 
-            $url = $manager->createFullUrl($validData);
+            $url = $manager->createFullUrl($bodyParams);
             $headers['Content-Type'] = "application/x-www-form-urlencoded";
-            $urlParams = [];
-            $result = $manager->send($url, $urlParams, $validData, $headers);
+            $bodyParams['grant_type'] = 'refresh_token';
+
+            $data = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+
+            $result = $sender->send($data);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
             $result = $this->createRequiredFieldExceptionResponse($exception);
+        } catch (ConnectException $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        } catch (\Exception $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR2";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        } catch (\Throwable $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR3";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        }
+
+        return new JsonResponse($result);
+    }
+
+    /**
+     * @Route("/GoogleDrive/revokeAccessToken")
+     * @Method("POST")
+     *
+     * @return JsonResponse
+     */
+    public function revokeAccessToken() {
+        try {
+            $manager = $this->get('manager');
+            $sender = $this->get('sender');
+
+            $manager->setBlockName(__FUNCTION__);
+
+            $bodyParams = $manager->getBodyParams();
+            $urlParams = $manager->getUrlParams();
+
+            $url = $manager->createFullUrl($bodyParams);
+            $headers['Content-Type'] = "application/x-www-form-urlencoded";
+
+            $data = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+
+            $result = $sender->send($data);
+        } catch (PackageException $exception) {
+            $result = $this->createPackageExceptionResponse($exception);
+        } catch (RequiredFieldException $exception) {
+            $result = $this->createRequiredFieldExceptionResponse($exception);
+        } catch (ConnectException $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        } catch (\Exception $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR2";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        } catch (\Throwable $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR3";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
         }
 
         return new JsonResponse($result);
@@ -99,16 +170,18 @@ class PackageController extends Controller
     public function getOtherMethods($blockName = null) {
         try {
             $manager = $this->get('manager');
+            $sender = $this->get('sender');
             $manager->setBlockName($blockName);
 
-//            $validData = $manager->getValidData();
             $bodyParams = $manager->getBodyParams();
             $urlParams = $manager->getUrlParams();
 
             $url = $manager->createFullUrl($bodyParams);
             $headers = $this->createHeaders($bodyParams);
 
-            $result = $manager->send($url, $urlParams, $bodyParams, $headers);
+            $data = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+
+            $result = $sender->send($data);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -133,9 +206,9 @@ class PackageController extends Controller
     private function createHeaders(&$data)
     {
         $result = [
-            'Authorization' => 'Bearer ' . $data['access_token']
+            'Authorization' => 'Bearer ' . $data['accessToken']
         ];
-        unset($data['access_token']);
+        unset($data['accessToken']);
 
         return $result;
     }
