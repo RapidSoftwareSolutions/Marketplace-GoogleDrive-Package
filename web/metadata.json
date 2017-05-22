@@ -144,7 +144,9 @@
               "name": "field",
               "type": "String",
               "description": "Field name",
-              "placeholder": "test placeholder"
+              "placeholder": "test placeholder",
+              "info": "test info",
+              "body": "test body parametr"
             }
           ]
         }
@@ -556,7 +558,8 @@
           "name": "includeDeleted",
           "type": "Boolean",
           "info": "Whether to return deleted comments. Deleted comments will not include their original content. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         }
       ],
       "callbacks": [
@@ -592,7 +595,8 @@
           "name": "includeDeleted",
           "type": "Boolean",
           "info": "Whether to include deleted comments. Deleted comments will not include their original content. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "pageSize",
@@ -1055,13 +1059,15 @@
           "name": "acknowledgeAbuse",
           "type": "Boolean",
           "info": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         }
       ],
       "callbacks": [
@@ -1103,7 +1109,8 @@
           "name": "includeTeamDriveItems",
           "type": "Boolean",
           "info": "Whether Team Drive items should be included in results. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "orderBy",
@@ -1140,7 +1147,8 @@
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "teamDriveId",
@@ -1559,8 +1567,7 @@
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false,
-          "urlParam": true
+          "required": false
         }
       ],
       "callbacks": [
@@ -1602,7 +1609,8 @@
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         }
       ],
       "callbacks": [
@@ -1650,7 +1658,8 @@
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         }
       ],
       "callbacks": [
@@ -1858,7 +1867,7 @@
           "type": "Boolean",
           "info": "Whether to return deleted replies. Deleted replies will not include their original content. (Default: false)",
           "required": false,
-          "urlParam": true
+          "toString": true
         }
       ],
       "callbacks": [
@@ -1900,7 +1909,8 @@
           "name": "includeDeleted",
           "type": "Boolean",
           "info": "Whether to return deleted replies. Deleted replies will not include their original content. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "pageSize",
@@ -1912,8 +1922,7 @@
           "name": "pageToken",
           "type": "String",
           "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
-          "required": false,
-          "urlParam": true
+          "required": false
         }
       ],
       "callbacks": [
