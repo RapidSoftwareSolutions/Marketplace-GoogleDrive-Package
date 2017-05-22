@@ -176,7 +176,8 @@
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "teamDriveId",

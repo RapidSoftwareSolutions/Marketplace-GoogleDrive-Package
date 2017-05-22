@@ -109,7 +109,8 @@ class DataValidator
                 return true;
             }
         } else {
-            if (strlen(trim($value)) > 0 && $value) {
+            if ($value != "") {
+                // true, false, 1, 0, "asd", "true", "false"
                 return true;
             }
         }
@@ -122,7 +123,8 @@ class DataValidator
         $vendorName = $this->getParamVendorName($paramData);
         $type = mb_strtolower($paramData['type']);
         $value = $this->getValueFromRequestData($name);
-        if (!empty($value)) {
+        // todo fix double checking required params!
+        if ($this->checkNotEmptyParam($paramData)) {
             // todo add new metadata param "nullable" => true (default false) to send "" or "0" param
             switch ($type) {
                 case 'json':
@@ -298,6 +300,9 @@ class DataValidator
         $data = filter_var($value, FILTER_VALIDATE_BOOLEAN);
         if (!empty($paramData['toInt']) && filter_var($paramData['toInt'], FILTER_VALIDATE_BOOLEAN) == true) {
             $data = (int) $data;
+        }
+        if (!empty($paramData['toString'])) {
+            $data = $data ? "true": "false";
         }
         $this->setSingleValidData($paramData, $data, $vendorName);
     }
