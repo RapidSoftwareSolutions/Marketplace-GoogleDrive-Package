@@ -50,6 +50,7 @@ class Metadata
                     $param['jsonParse'],
                     $param['base64encode'],
                     $param['toInt'],
+                    $param['toString'],
                     $param['urlParam'],
                     $param['snakeCase'],
                     $param['vendorName']
