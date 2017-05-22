@@ -22,9 +22,7 @@ class Sender
         unset($data['url'], $data['method']);
         try {
             // todo create Guzzle settings
-            $client = new Client(['defaults' => [
-                'verify' => false
-            ]]);
+            $client = new Client();
             /** @var ResponseInterface $vendorResponse */
             $vendorResponse = $client->$method($url, $data);
             if (in_array($vendorResponse->getStatusCode(), range(200, 204))) {
