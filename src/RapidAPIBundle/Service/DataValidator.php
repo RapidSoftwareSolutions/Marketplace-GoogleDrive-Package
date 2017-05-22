@@ -383,7 +383,7 @@ class DataValidator
         }
 
         if ($method == 'GET') {
-            $result['query'] = $params;
+            $result['query'] = array_merge($params, $urlParam);
         } else {
             if (!empty($urlParam)) {
                 $result['query'] = $urlParam;

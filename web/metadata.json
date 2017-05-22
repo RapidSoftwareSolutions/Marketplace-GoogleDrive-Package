@@ -219,19 +219,22 @@
           "name": "includeCorpusRemovals",
           "type": "Boolean",
           "info": "Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "includeRemoved",
           "type": "Boolean",
           "info": "Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access. (Default: true)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "includeTeamDriveItems",
           "type": "Boolean",
           "info": "Whether Team Drive files or changes should be included in results. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "pageSize",
@@ -243,7 +246,8 @@
           "name": "restrictToMyDrive",
           "type": "Boolean",
           "info": "Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "spaces",
@@ -255,7 +259,8 @@
           "name": "supportsTeamDrives",
           "type": "Boolean",
           "info": "Whether the requesting application supports Team Drives. (Default: false)",
-          "required": false
+          "required": false,
+          "toString": true
         },
         {
           "name": "teamDriveId",
@@ -1880,7 +1885,7 @@
           "required": true
         },
         {
-          "name": "fieldId",
+          "name": "fileId",
           "type": "String",
           "info": "The ID of the file.",
           "required": true
@@ -1895,15 +1900,13 @@
           "name": "includeDeleted",
           "type": "Boolean",
           "info": "Whether to return deleted replies. Deleted replies will not include their original content. (Default: false)",
-          "required": false,
-          "urlParam": true
+          "required": false
         },
         {
           "name": "pageSize",
           "type": "Number",
           "info": "The maximum number of replies to return per page. Acceptable values are 1 to 100, inclusive. (Default: 20)",
-          "required": false,
-          "urlParam": true
+          "required": false
         },
         {
           "name": "pageToken",
