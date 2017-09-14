@@ -29,7 +29,7 @@ $app->post('/api/GoogleDrive/refreshToken', function ($request, $response) {
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
-     
+     $requestParams['query']['grant_type'] = 'refresh_token';
 
     try {
         $resp = $client->post($query_str, $requestParams);

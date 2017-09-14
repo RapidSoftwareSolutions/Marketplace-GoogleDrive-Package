@@ -15,7 +15,7 @@ $app->post('/api/GoogleDrive/createFileComment', function ($request, $response) 
     $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','content'=>'content','fields'=>'fields'];
     $optionalParams = ['anchor'=>'anchor','quotedFileContentValue'=>'quotedFileContentValue','quotedFileContentMimeType'=>'quotedFileContentMimeType'];
     $bodyParams = [
-       'json' => ['access_token','quotedFileContentMimeType','quotedFileContentValue','content','fileId'],
+       'json' => ['access_token','quotedFileContentMimeType','quotedFileContentValue','content','fileId','anchor'],
        'query' => ['access_token','fields']
     ];
 
@@ -33,7 +33,17 @@ $app->post('/api/GoogleDrive/createFileComment', function ($request, $response) 
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
-     
+     if(!empty($data['quotedFileContentValue']))
+     {
+         $requestParams['json']['quotedFileContent']['value'] = $data['quotedFileContentValue'];
+         unset($data['quotedFileContentValue']);
+     }
+
+    if(!empty($data['quotedFileContentMimeType']))
+    {
+        $requestParams['json']['quotedFileContentMimeType']['mimeType'] = $data['quotedFileContentMimeType'];
+        unset($data['quotedFileContentMimeType']);
+    }
 
     try {
         $resp = $client->post($query_str, $requestParams);

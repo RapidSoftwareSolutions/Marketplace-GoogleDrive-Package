@@ -36,8 +36,8 @@ $app->post('/api/GoogleDrive/subscribeToUserChanges', function ($request, $respo
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
-     
+    $requestParams['headers'] = ["Content-type"=>"application/json"];
+//     $requestParams['json']['includeCorpusRemovals'] = true;
 
     try {
         $resp = $client->post($query_str, $requestParams);

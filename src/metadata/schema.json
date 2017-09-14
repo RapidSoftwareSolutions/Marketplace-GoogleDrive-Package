@@ -201,12 +201,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -268,12 +268,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -410,12 +410,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -559,12 +559,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -698,12 +698,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -789,12 +789,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -812,7 +812,8 @@
                             "quotedFileContentMimeType",
                             "quotedFileContentValue",
                             "content",
-                            "fileId"
+                            "fileId",
+                            "anchor"
                         ]
                     },
                     {
@@ -927,12 +928,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
-                    "required": false,
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -1014,12 +1015,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -1088,12 +1089,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -1307,12 +1308,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -2885,12 +2886,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -3051,12 +3052,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -3082,288 +3083,6 @@
                             "supportsTeamDrives",
                             "teamDriveId",
                             "fields"
-                        ]
-                    }
-                ]
-            },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
-        {
-            "name": "updateMultipartFile",
-            "description": "Updates a file's metadata and\/or content with patch semantics.",
-            "args": [
-                {
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "Access Token. Use getAccessToken to get it",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "access_token"
-                    }
-                },
-                {
-                    "name": "fileId",
-                    "type": "String",
-                    "info": "The ID of the file.",
-                    "required": true
-                },
-                {
-                    "name": "addParents",
-                    "type": "List",
-                    "structure": {
-                        "name": "parentId",
-                        "type": "String",
-                        "info": "Single parent id to add."
-                    },
-                    "info": "A comma-separated list of parent IDs to add.",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "contentType",
-                    "type": "String",
-                    "info": "Set to the MIME media type of the object being uploaded.",
-                    "required": true
-                },
-                {
-                    "name": "uploadFile",
-                    "type": "File",
-                    "info": "Upload file.",
-                    "required": false
-                },
-                {
-                    "name": "keepRevisionForever",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "ocrLanguage",
-                    "type": "String",
-                    "info": "A language hint for OCR processing during image import (ISO 639-1 code).",
-                    "required": false
-                },
-                {
-                    "name": "removeParents",
-                    "type": "List",
-                    "structure": {
-                        "name": "parentId",
-                        "type": "String",
-                        "info": "Single parent id to add."
-                    },
-                    "info": "A comma-separated list of parent IDs to remove.",
-                    "required": false,
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "supportsTeamDrives",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether the requesting application supports Team Drives. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "useContentAsIndexableText",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether to use the uploaded content as indexable text. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "appProperties",
-                    "type": "Array",
-                    "structure": [
-                        {
-                            "name": "key",
-                            "type": "String",
-                            "info": "Declares a new properties by name.",
-                            "required": true
-                        },
-                        {
-                            "name": "value",
-                            "type": "String",
-                            "info": "Value for new properties.",
-                            "required": true
-                        }
-                    ],
-                    "info": "A collection of arbitrary key-value pairs which are private to the requesting app. Entries with null values are cleared in update and copy requests.",
-                    "required": false
-                },
-                {
-                    "name": "contentHintsIndexableText",
-                    "type": "String",
-                    "info": "Text to be indexed for the file to improve fullText queries. This is limited to 128KB in length and may contain HTML elements.",
-                    "required": false
-                },
-                {
-                    "name": "contentHintsThumbnailImage",
-                    "type": "String",
-                    "info": "The thumbnail data encoded with URL-safe Base64 (RFC 4648 section 5).",
-                    "required": false
-                },
-                {
-                    "name": "contentHintsMimeType",
-                    "type": "String",
-                    "info": "The MIME type of the thumbnail.",
-                    "required": false
-                },
-                {
-                    "name": "description",
-                    "type": "String",
-                    "info": "A short description of the file.",
-                    "required": false
-                },
-                {
-                    "name": "mimeType",
-                    "type": "String",
-                    "info": "The MIME type of the file.Drive will attempt to automatically detect an appropriate value from uploaded content if no value is provided. The value cannot be changed unless a new revision is uploaded.If a file is created with a Google Doc MIME type, the uploaded content will be imported if possible. The supported import formats are published in the About resource.",
-                    "required": false
-                },
-                {
-                    "name": "modifiedTime",
-                    "type": "DatePicker",
-                    "info": "The last time the file was modified by anyone (RFC 3339 date-time).Note that setting modifiedTime will also update modifiedByMeTime for the user.",
-                    "required": false
-                },
-                {
-                    "name": "name",
-                    "type": "String",
-                    "info": "The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of Team Drives, My Drive root folder, and Application Data folder the name is constant.",
-                    "required": false
-                },
-                {
-                    "name": "originalFilename",
-                    "type": "String",
-                    "info": "The original filename of the uploaded content if available, or else the original value of the name field. This is only available for files with binary content in Drive.",
-                    "required": false
-                },
-                {
-                    "name": "parents",
-                    "type": "List",
-                    "info": "The IDs of the parent folders which contain the file.If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.",
-                    "required": false
-                },
-                {
-                    "name": "properties",
-                    "type": "Array",
-                    "info": "A collection of arbitrary key-value pairs which are visible to all apps. Entries with null values are cleared in update and copy requests.",
-                    "required": false,
-                    "structure": [
-                        {
-                            "name": "key",
-                            "type": "String",
-                            "info": "Declares a new properties by name.",
-                            "required": true
-                        },
-                        {
-                            "name": "value",
-                            "type": "String",
-                            "info": "Value for new properties.",
-                            "required": true
-                        }
-                    ]
-                },
-                {
-                    "name": "starred",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "The IDs of the parent folders which contain the file.If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.",
-                    "required": false
-                },
-                {
-                    "name": "viewedByMeTime",
-                    "type": "DatePicker",
-                    "info": "The last time the file was viewed by the user (RFC 3339 date-time).",
-                    "required": false
-                },
-                {
-                    "name": "viewersCanCopyContent",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether users with only reader or commenter permission can copy the file's content. This affects copy, download, and print operations.",
-                    "required": false
-                },
-                {
-                    "name": "writersCanShare",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether users with only writer permission can modify the file's permissions. Not populated for Team Drive files.",
-                    "required": false
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.googleapis.com\/upload\/drive\/v3\/files\/{$data['fileId']}?uploadType=multipart",
-                "method": "patch",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "access_token",
-                            "addParents",
-                            "removeParents",
-                            "uploadType",
-                            "ignoreDefaultVisibility",
-                            "ocrLanguage",
-                            "supportsTeamDrives",
-                            "keepRevisionForever",
-                            "useContentAsIndexableText",
-                            "fields",
-                            "uploadFile"
-                        ]
-                    },
-                    {
-                        "type": "json",
-                        "parameters": [
-                            "appProperties",
-                            "contentHintsIndexableText",
-                            "contentHintsThumbnailImage",
-                            "contentHintsThumbnailMimeType",
-                            "createdTime",
-                            "description",
-                            "folderColorRgb",
-                            "id",
-                            "mimeType",
-                            "modifiedTime",
-                            "name",
-                            "originalFilename",
-                            "parents",
-                            "properties",
-                            "starred",
-                            "viewedByMeTime",
-                            "viewersCanCopyContent",
-                            "writersCanShare"
                         ]
                     }
                 ]
@@ -3499,12 +3218,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -3656,12 +3375,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -3806,12 +3525,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -3918,12 +3637,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4117,12 +3836,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4188,7 +3907,7 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
@@ -4267,12 +3986,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4355,12 +4074,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4489,12 +4208,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4562,12 +4281,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4632,12 +4351,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4737,12 +4456,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4798,7 +4517,13 @@
                     "name": "requestId",
                     "type": "String",
                     "info": "An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.",
-                    "required": false
+                    "required": true
+                },
+                {
+                    "name": "name",
+                    "type": "String",
+                    "info": "Name of the team.",
+                    "required": true
                 },
                 {
                     "name": "themeId",
@@ -4821,7 +4546,8 @@
                     {
                         "type": "json",
                         "parameters": [
-                            "themeId"
+                            "themeId",
+                            "name"
                         ]
                     }
                 ]
@@ -4902,12 +4628,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -4966,12 +4692,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name."
+                        "info": "Single filed name.To display all fields, use `*`."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -5021,7 +4747,7 @@
                     "name": "teamDriveId",
                     "type": "String",
                     "info": "The ID of the Team Drive",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "backgroundImageFileId",

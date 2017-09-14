@@ -12,8 +12,8 @@ $app->post('/api/GoogleDrive/createTeamDrive', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'access_token','name' => 'name'];
-    $optionalParams = ['requestId'=>'requestId','themeId'=>'themeId'];
+    $requiredParams = ['accessToken'=>'access_token','name' => 'name','requestId'=>'requestId'];
+    $optionalParams = ['themeId'=>'themeId'];
     $bodyParams = [
        'query' => ['access_token','requestId'],
        'json' => ['themeId','name']

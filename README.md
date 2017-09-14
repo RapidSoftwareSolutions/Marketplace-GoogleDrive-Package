@@ -54,7 +54,7 @@ Gets information about the user, the user's Drive, and system capabilities.
 | Field      | Type  | Description
 |------------|-------|----------
 | accessToken| String| Access Token. Use getAccessToken to get it
-| fields     | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields     | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getStartPageToken
 Gets the starting pageToken for listing future changes.
@@ -64,7 +64,7 @@ Gets the starting pageToken for listing future changes.
 | accessToken       | String| Access Token. Use getAccessToken to get it
 | supportsTeamDrives| Select| Whether the requesting application supports Team Drives. (Default: false)
 | teamDriveId       | String| The ID of the Team Drive for which the starting pageToken for listing future changes from that Team Drive will be returned.
-| fields            | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields            | List  | List of fields. To display all fields, use `*`.Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getChanges
 Lists the changes for a user or Team Drive.
@@ -81,7 +81,7 @@ Lists the changes for a user or Team Drive.
 | spaces               | List  | A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
 | supportsTeamDrives   | Select| Whether the requesting application supports Team Drives. (Default: false)
 | teamDriveId          | String| The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
-| fields               | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields               | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.subscribeToUserChanges
 Subscribes to changes for a user.
@@ -98,7 +98,7 @@ Subscribes to changes for a user.
 | spaces               | List  | A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
 | supportsTeamDrives   | Select| Whether the requesting application supports Team Drives. (Default: false)
 | teamDriveId          | String| The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
-| fields               | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields               | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.stopWatchingChannelResources
 Stop watching resources through this channel.
@@ -116,7 +116,7 @@ Stop watching resources through this channel.
 | address    | String    | The address where notifications are delivered for this channel.
 | payload    | Select    | A Boolean value to indicate whether payload is wanted. Optional.
 | params     | Array     | Additional parameters controlling delivery channel behavior. Optional.
-| fields     | List      | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields     | List      | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.createFileComment
 Creates a new comment on a file.
@@ -129,7 +129,7 @@ Creates a new comment on a file.
 | anchor                   | String| A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
 | quotedFileContentValue   | String| The quoted content itself. This is interpreted as plain text if set through the API.
 | quotedFileContentMimeType| String| The quoted content itself. This is interpreted as plain text if set through the API.
-| fields                   | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields                   | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.deleteFileComment
 Deletes a comment.
@@ -149,7 +149,7 @@ Gets a comment by ID.
 | fileId        | String| The ID of the file.
 | commentId     | String| The ID of the comment.
 | includeDeleted| Select| Whether to return deleted comments. Deleted comments will not include their original content. (Default: false)
-| fields        | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields        | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getFileComments
 Lists a file's comments.
@@ -162,7 +162,7 @@ Lists a file's comments.
 | pageSize         | Number| The maximum number of comments to return per page. Acceptable values are 1 to 100, inclusive. (Default: 20)
 | pageToken        | String| The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
 | startModifiedTime| String| The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).
-| fields           | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields           | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.updateFileComment
 Updates a comment with patch semantics.
@@ -173,7 +173,7 @@ Updates a comment with patch semantics.
 | fileId     | String| The ID of the file.
 | commentId  | String| The ID of the comment.
 | content    | String| The plain text content of the comment. This field is used for setting the content, while htmlContent should be displayed.
-| fields     | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields     | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.copyFile
 Lists a file's comments.
@@ -199,7 +199,7 @@ Lists a file's comments.
 | viewedByMeTime               | DatePicker| The last time the file was viewed by the user (RFC 3339 date-time).
 | viewersCanCopyContent        | Select    | Whether users with only reader or commenter permission can copy the file's content. This affects copy, download, and print operations.
 | writersCanShare              | Select    | Whether users with only writer permission can modify the file's permissions. Not populated for Team Drive files.
-| fields                       | List      | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields                       | List      | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.createFileFromUpload
  A createFileFromUpload is the most straightforward method for uploading a file.
@@ -395,7 +395,7 @@ Gets a file's metadata or content by ID.
 | fileId            | String| The ID of the file.
 | acknowledgeAbuse  | Select| Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media. (Default: false)
 | supportsTeamDrives| Select| Whether the requesting application supports Team Drives. (Default: false)
-| fields            | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields            | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getFiles
 Lists or searches files.
@@ -413,7 +413,7 @@ Lists or searches files.
 | spaces               | List  | A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
 | supportsTeamDrives   | Select| Whether the requesting application supports Team Drives. (Default: false)
 | teamDriveId          | String| ID of Team Drive to search
-| fields               | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields               | List  | List of fields. To display all fields, use `*`.Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.updateMultipartFile
 Updates a file's metadata and/or content with patch semantics.
@@ -465,7 +465,7 @@ Subscribes to changes to a file.
 | address           | String    | The address where notifications are delivered for this channel
 | payload           | Select    | A Boolean value to indicate whether payload is wanted.
 | params            | Array     | Additional parameters controlling delivery channel behavior. Optional.
-| fields            | List      | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields            | List      | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.createFilePermission
 Creates a permission for a file or Team Drive.
@@ -483,7 +483,7 @@ Creates a permission for a file or Team Drive.
 | allowFileDiscovery   | Select| Whether the permission allows the file to be discovered through search. This is only applicable for permissions of type domain or anyone.
 | domain               | String| The domain to which this permission refers.
 | emailAddress         | String| The email address of the user or group to which this permission refers.
-| fields               | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields               | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.deleteFilePermission
 Deletes a permission.
@@ -504,7 +504,7 @@ Gets a permission by ID.
 | fileId            | String| The ID of the file.
 | permissionId      | String| The ID of the permission.
 | supportsTeamDrives| Select| Whether the requesting application supports Team Drives. (Default: false)
-| fields            | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields            | List  | List of fields. To display all fields, use `*`.Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getFilePermissions
 Lists a file's or Team Drive's permissions.
@@ -520,7 +520,7 @@ Lists a file's or Team Drive's permissions.
 | kind              | String| Identifies what kind of resource this is. Value: the fixed string `drive#permissionList`.
 | permissions       | List  | The list of permissions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
 | nextPageToken     | String| The page token for the next page of permissions. This field will be absent if the end of the permissions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
-| fields            | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields            | List  | List of fields. To display all fields, use `*`.Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.updateFilePermission
 Updates a permission with patch semantics.
@@ -546,7 +546,7 @@ Creates a new reply to a comment.
 | commentId  | String| The ID of the comment.
 | action     | Select| The action the reply performed to the parent comment. Valid values are:, "resolve", "reopen"
 | content    | String| The plain text content of the reply. This field is used for setting the content, while htmlContent should be displayed. This is required on creates if no action is specified.
-| fields     | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields     | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.deleteCommentReply
 Deletes a reply.
@@ -569,7 +569,7 @@ Gets a reply by ID.
 | commentId     | String| The ID of the comment.
 | replyId       | String| The ID of the reply.
 | includeDeleted| Select| Whether to return deleted replies. Deleted replies will not include their original content. (Default: false)
-| fields        | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields        | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getCommentReplies
 Lists a comment's replies.
@@ -582,7 +582,7 @@ Lists a comment's replies.
 | includeDeleted| Select| Whether to return deleted replies. Deleted replies will not include their original content. (Default: false)
 | pageSize      | Number| The maximum number of replies to return per page. Acceptable values are 1 to 100, inclusive. (Default: 20)
 | pageToken     | String| The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-| fields        | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields        | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.updateCommentReply
 Updates a reply with patch semantics.
@@ -603,7 +603,7 @@ Permanently deletes a revision. This method is only applicable to files with bin
 | accessToken| String| Access Token. Use getAccessToken to get it
 | fileId     | String| The ID of the file.
 | revisionId | String| The ID of the revision.
-| fields     | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields     | List  | List of fields. To display all fields, use `*`.Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getFileSingleRevision
 Gets a revision's metadata or content by ID.
@@ -614,7 +614,7 @@ Gets a revision's metadata or content by ID.
 | fileId          | String| The ID of the file.
 | revisionId      | String| The ID of the revision.
 | acknowledgeAbuse| Select| Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media. (Default: false)
-| fields          | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields          | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getFileRevisions
 Lists a file's revisions.
@@ -625,7 +625,7 @@ Lists a file's revisions.
 | fileId     | String| The ID of the file.
 | pageSize   | Number| The maximum number of revisions to return per page. Acceptable values are 1 to 1000, inclusive. (Default: 200)
 | pageToken  | String| The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-| fields     | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields     | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.updateFileRevision
 Updates a revision with patch semantics.
@@ -639,7 +639,7 @@ Updates a revision with patch semantics.
 | publishAuto           | Select| Whether subsequent revisions will be automatically republished. This is only applicable to Google Docs.
 | published             | Select| Whether this revision is published. This is only applicable to Google Docs.
 | publishedOutsideDomain| Select| Whether this revision is published outside the domain. This is only applicable to Google Docs.
-| fields                | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields                | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.createTeamDrive
 Creates a new Team Drive.
@@ -665,7 +665,7 @@ Gets a Team Drive's metadata by ID.
 |------------|-------|----------
 | accessToken| String| Access Token. Use getAccessToken to get it
 | teamDriveId| String| The ID of the Team Drive
-| fields     | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields     | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.getTeamDrives
 Lists the user's Team Drives.
@@ -675,7 +675,7 @@ Lists the user's Team Drives.
 | accessToken| String| Access Token. Use getAccessToken to get it
 | pageSize   | Number| Maximum number of Team Drives to return. Acceptable values are 1 to 100, inclusive. (Default: 10)
 | pageToken  | String| Page token for Team Drives.
-| fields     | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields     | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.updateTeamDrive
 Updates a Team Drive's metadata.

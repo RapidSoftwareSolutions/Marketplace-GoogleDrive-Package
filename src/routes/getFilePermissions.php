@@ -12,7 +12,7 @@ $app->post('/api/GoogleDrive/getFilePermissions', function ($request, $response)
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'access_token','fieldId'=>'fieldId'];
+    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId'];
     $optionalParams = ['pageSize'=>'pageSize','pageToken'=>'pageToken','supportsTeamDrives'=>'supportsTeamDrives','kind'=>'kind','permissions'=>'permissions','nextPageToken'=>'nextPageToken','fields'=>'fields'];
     $bodyParams = [
        'query' => ['access_token','pageSize','pageToken','supportsTeamDrives'],

@@ -4,7 +4,7 @@ $app->post('/api/GoogleDrive/getFileSingleComment', function ($request, $respons
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','commentId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','commentId','fields']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/GoogleDrive/getFileSingleComment', function ($request, $respons
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','commentId'=>'commentId'];
-    $optionalParams = ['includeDeleted'=>'includeDeleted','fields'=>'fields'];
+    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','fields'=>'fields','commentId'=>'commentId'];
+    $optionalParams = ['includeDeleted'=>'includeDeleted'];
     $bodyParams = [
        'query' => ['access_token','includeDeleted','fields']
     ];

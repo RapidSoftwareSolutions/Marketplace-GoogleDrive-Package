@@ -21,12 +21,23 @@ $app->post('/api/GoogleDrive/updateMultipartFile', function ($request, $response
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+
+
+    if(!empty($data['addParents']))
+    {
+        $data['addParents'] = \Models\Params::toString($data['addParents'], ',');
+    }
+
+    if(!empty($data['removeParents']))
+    {
+        $data['removeParents'] = \Models\Params::toString($data['removeParents'], ',');
+    }
+
     $data['addParents'] = \Models\Params::toString($data['addParents'], ','); 
     $data['removeParents'] = \Models\Params::toString($data['removeParents'], ','); 
 
     $client = $this->httpClient;
-    $query_str = "https://www.googleapis.com/upload/drive/v3/files/{$data['fileId']}?uploadType=multipart";
+    $query_str = "https://www.googleapis.com/upload/drive/v3/files/{$data['fileId']}";
 
     
 
@@ -47,6 +58,14 @@ $app->post('/api/GoogleDrive/updateMultipartFile', function ($request, $response
     {
         $requestParams['json']['contentHints']['thumbnail']['mimeType'] = $data['contentHintsMimeType'];
     }
+
+
+    $requestParams['query']['uploadType'] = 'multipart';
+
+    $requestParams['multipart'] = [
+        array('name' => 'json','contents' => json_encode($requestParams['json']),'headers' => ['Content-Type' => 'application/json']),
+        array('name' => 'file','contents' => fopen($data['uploadFile'],'r'),'headers' => ['Content-Type' => $data['contentType']])
+    ];
 
     try {
         $resp = $client->patch($query_str, $requestParams);
