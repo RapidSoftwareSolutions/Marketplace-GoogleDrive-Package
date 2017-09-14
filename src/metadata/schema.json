@@ -269,7 +269,7 @@
                     "name": "fields",
                     "type": "List",
                     "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
-                    "required": true,
+                    "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
