@@ -2,6 +2,8 @@
 
 $app->post('/api/GoogleDrive/createFileFromUpload', function ($request, $response) {
 
+
+    ini_set('display_errors',1);
     $settings = $this->settings;
     $checkRequest = $this->validation;
     $validateRes = $checkRequest->validate($request, ['accessToken','uploadFile','contentType']);
@@ -81,6 +83,8 @@ $app->post('/api/GoogleDrive/createFileFromUpload', function ($request, $respons
         $result['contextWrites']['to']['status_msg'] = 'Something went wrong inside the package.';
 
     }
+
+    exit();
 
     return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
 

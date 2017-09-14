@@ -32,7 +32,7 @@ $app->post('/api/GoogleDrive/updateFileComment', function ($request, $response) 
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
-     
+    $requestParams['json']['content'] = $data['content'];
 
     try {
         $resp = $client->patch($query_str, $requestParams);

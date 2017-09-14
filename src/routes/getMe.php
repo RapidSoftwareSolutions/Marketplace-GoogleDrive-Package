@@ -34,9 +34,11 @@ $app->post('/api/GoogleDrive/getMe', function ($request, $response) {
     $requestParams['headers'] = [];
     if(!empty($data['fields']))
     {
-        $requestParams['json']['fields'] = $data['fields'];
+        $requestParams['query']['fields'] = $data['fields'];
     }
 
+//    print_r($requestParams);
+//    exit();
     try {
         $resp = $client->get($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
