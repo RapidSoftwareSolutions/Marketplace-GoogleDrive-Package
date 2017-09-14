@@ -32,7 +32,10 @@ $app->post('/api/GoogleDrive/getMe', function ($request, $response) {
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
-     
+    if(!empty($data['fields']))
+    {
+        $requestParams['json']['fields'] = $data['fields'];
+    }
 
     try {
         $resp = $client->get($query_str, $requestParams);

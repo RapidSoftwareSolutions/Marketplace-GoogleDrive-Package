@@ -29,7 +29,7 @@ $app->post('/api/GoogleDrive/getAccessToken', function ($request, $response) {
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
-     
+    $requestParams['query']['grant_type'] = 'authorization_code';
 
     try {
         $resp = $client->post($query_str, $requestParams);
