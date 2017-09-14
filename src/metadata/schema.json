@@ -1089,7 +1089,7 @@
                     "name": "fields",
                     "type": "List",
                     "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
-                    "required": false,
+                    "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
@@ -4356,7 +4356,7 @@
                     "name": "fields",
                     "type": "List",
                     "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
-                    "required": false,
+                    "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",
@@ -4563,7 +4563,7 @@
                     "name": "fields",
                     "type": "List",
                     "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
-                    "required": false,
+                    "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",

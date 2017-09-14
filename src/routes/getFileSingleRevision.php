@@ -4,7 +4,7 @@ $app->post('/api/GoogleDrive/getFileSingleRevision', function ($request, $respon
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','revisionId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','revisionId','fields']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/GoogleDrive/getFileSingleRevision', function ($request, $respon
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','revisionId'=>'revisionId'];
-    $optionalParams = ['acknowledgeAbuse'=>'acknowledgeAbuse','fields'=>'fields'];
+    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','revisionId'=>'revisionId','fields'=>'fields'];
+    $optionalParams = ['acknowledgeAbuse'=>'acknowledgeAbuse'];
     $bodyParams = [
        'query' => ['access_token','acknowledgeAbuse']
     ];

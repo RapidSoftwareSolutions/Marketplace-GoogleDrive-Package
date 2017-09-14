@@ -4,7 +4,7 @@ $app->post('/api/GoogleDrive/getCommentReplies', function ($request, $response) 
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','commentId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','commentId','fields']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/GoogleDrive/getCommentReplies', function ($request, $response) 
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','commentId'=>'commentId'];
-    $optionalParams = ['includeDeleted'=>'includeDeleted','pageSize'=>'pageSize','pageToken'=>'pageToken','fields'=>'fields'];
+    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','commentId'=>'commentId','fields'=>'fields'];
+    $optionalParams = ['includeDeleted'=>'includeDeleted','pageSize'=>'pageSize','pageToken'=>'pageToken'];
     $bodyParams = [
        'query' => ['access_token','fields','includeDeleted','pageSize','pageToken']
     ];
