@@ -29,7 +29,25 @@ $app->post('/api/GoogleDrive/copyFile', function ($request, $response) {
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/drive/v3/files/{$data['fileId']}/copy";
 
-    
+    if(!empty($data['modifiedTime']))
+    {
+        $time = strtotime($data['modifiedTime']);
+
+        if($time !== false)
+        {
+            $data['modifiedTime'] =  date('Y-m-d\TH:i:s\Z',$time);
+        }
+    }
+
+    if(!empty($data['viewedByMeTime']))
+    {
+        $time = strtotime($data['viewedByMeTime']);
+
+        if($time !== false)
+        {
+            $data['viewedByMeTime'] =  date('Y-m-d\TH:i:s\Z',$time);
+        }
+    }
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];

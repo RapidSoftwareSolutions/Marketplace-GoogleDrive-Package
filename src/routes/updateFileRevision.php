@@ -15,7 +15,7 @@ $app->post('/api/GoogleDrive/updateFileRevision', function ($request, $response)
     $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','revisionId'=>'revisionId'];
     $optionalParams = ['keepForever'=>'keepForever','publishAuto'=>'publishAuto','published'=>'published','publishedOutsideDomain'=>'publishedOutsideDomain','fields'=>'fields'];
     $bodyParams = [
-       'query' => ['access_token'],
+       'query' => ['access_token','fields'],
        'json' => ['keepForever','publishAuto','published','publishedOutsideDomain']
     ];
 

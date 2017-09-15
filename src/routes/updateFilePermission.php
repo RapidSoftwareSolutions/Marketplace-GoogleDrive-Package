@@ -21,7 +21,15 @@ $app->post('/api/GoogleDrive/updateFilePermission', function ($request, $respons
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+    if(!empty($data['expirationTime']))
+    {
+        $time = strtotime($data['expirationTime']);
+
+        if($time !== false)
+        {
+            $data['expirationTime'] =  date('Y-m-d\TH:i:s\Z',$time);
+        }
+    }
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/drive/v3/files/{$data['fileId']}/permissions/{$data['permissionId']}";

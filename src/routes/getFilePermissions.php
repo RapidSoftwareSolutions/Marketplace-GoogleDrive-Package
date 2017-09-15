@@ -4,7 +4,7 @@ $app->post('/api/GoogleDrive/getFilePermissions', function ($request, $response)
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','permissionId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','fileId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -15,11 +15,13 @@ $app->post('/api/GoogleDrive/getFilePermissions', function ($request, $response)
     $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId'];
     $optionalParams = ['pageSize'=>'pageSize','pageToken'=>'pageToken','supportsTeamDrives'=>'supportsTeamDrives','kind'=>'kind','permissions'=>'permissions','nextPageToken'=>'nextPageToken','fields'=>'fields'];
     $bodyParams = [
-       'query' => ['access_token','pageSize','pageToken','supportsTeamDrives'],
+       'query' => ['access_token','pageSize','pageToken','supportsTeamDrives','fields'],
        'json' => ['kind','permissions','nextPageToken']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
+
+
 
 
     if(!empty($data['fields']))
@@ -27,7 +29,7 @@ $app->post('/api/GoogleDrive/getFilePermissions', function ($request, $response)
         $data['fields'] = \Models\Params::toString($data['fields'], ',');
     }
     $client = $this->httpClient;
-    $query_str = "https://www.googleapis.com/drive/v3/files/{$data['fileId']}/permissions/{$data['permissionId']}";
+    $query_str = "https://www.googleapis.com/drive/v3/files/{$data['fileId']}/permissions/";
 
     
 

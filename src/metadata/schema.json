@@ -456,155 +456,6 @@
             ]
         },
         {
-            "name": "subscribeToUserChanges",
-            "description": "Subscribes to changes for a user.",
-            "args": [
-                {
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "Access Token. Use getAccessToken to get it",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "access_token"
-                    }
-                },
-                {
-                    "name": "pageToken",
-                    "type": "String",
-                    "info": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.",
-                    "required": true
-                },
-                {
-                    "name": "includeCorpusRemovals",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "includeRemoved",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access. (Default: true)",
-                    "required": false
-                },
-                {
-                    "name": "includeTeamDriveItems",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether Team Drive files or changes should be included in results. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "pageSize",
-                    "type": "Number",
-                    "info": "The maximum number of changes to return per page. Acceptable values are 1 to 1000, inclusive. (Default: 100)",
-                    "required": false
-                },
-                {
-                    "name": "restrictToMyDrive",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "spaces",
-                    "type": "List",
-                    "structure": {
-                        "name": "spacesName",
-                        "type": "Select",
-                        "options": [
-                            "drive",
-                            "appDataFolder",
-                            "photos"
-                        ],
-                        "info": "Spaces name."
-                    },
-                    "info": "A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "spaces",
-                        "format": "toString:{,}"
-                    }
-                },
-                {
-                    "name": "supportsTeamDrives",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether the requesting application supports Team Drives. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "teamDriveId",
-                    "type": "String",
-                    "info": "The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.",
-                    "required": false
-                },
-                {
-                    "name": "fields",
-                    "type": "List",
-                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
-                    "required": false,
-                    "structure": {
-                        "name": "field",
-                        "type": "String",
-                        "info": "Single filed name.To display all fields, use `*`."
-                    },
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.googleapis.com\/drive\/v3\/changes\/watch",
-                "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "access_token",
-                            "pageToken",
-                            "includeCorpusRemovals",
-                            "includeRemoved",
-                            "includeTeamDriveItems",
-                            "pageSize",
-                            "restrictToMyDrive",
-                            "spaces",
-                            "supportsTeamDrives",
-                            "teamDriveId",
-                            "fields"
-                        ]
-                    }
-                ]
-            },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
-        {
             "name": "stopWatchingChannelResources",
             "description": "Stop watching resources through this channel.",
             "args": [
@@ -1008,7 +859,7 @@
                 },
                 {
                     "name": "startModifiedTime",
-                    "type": "String",
+                    "type": "DatePicker",
                     "info": "The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).",
                     "required": false
                 },
@@ -1246,6 +1097,11 @@
                 {
                     "name": "parents",
                     "type": "List",
+                    "structure": {
+                        "name": "parentFolderId",
+                        "type": "String",
+                        "info": "The ID of the parent folders which contain the file."
+                    },
                     "info": "The IDs of the parent folders which contain the file. If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.",
                     "required": false
                 },
@@ -1288,7 +1144,7 @@
                 {
                     "name": "viewersCanCopyContent",
                     "type": "Select",
-                    "optins": [
+                    "options": [
                         "true",
                         "false"
                     ],
@@ -1744,6 +1600,11 @@
                 {
                     "name": "parents",
                     "type": "List",
+                    "structure": {
+                        "name": "parentFolderId",
+                        "type": "String",
+                        "info": "The ID of the parent folders which contain the file."
+                    },
                     "info": "The IDs of the parent folders which contain the file.If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.",
                     "required": false
                 },
@@ -2009,6 +1870,11 @@
                 {
                     "name": "parents",
                     "type": "List",
+                    "structure": {
+                        "name": "parentFolderId",
+                        "type": "String",
+                        "info": "The ID of the parent folders which contain the file."
+                    },
                     "info": "The IDs of the parent folders which contain the file.If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.",
                     "required": false
                 },
@@ -2266,6 +2132,11 @@
                 {
                     "name": "parents",
                     "type": "List",
+                    "structure": {
+                        "name": "parentFolderId",
+                        "type": "String",
+                        "info": "The ID of the parent folders which contain the file."
+                    },
                     "info": "The IDs of the parent folders which contain the file.If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.",
                     "required": false
                 },
@@ -2530,11 +2401,16 @@
                     "name": "originalFilename",
                     "type": "String",
                     "info": "The original filename of the uploaded content if available, or else the original value of the name field. This is only available for files with binary content in Drive.",
-                    "required": false
+                    "requi red": false
                 },
                 {
                     "name": "parents",
                     "type": "List",
+                    "structure": {
+                        "name": "parentFolderId",
+                        "type": "String",
+                        "info": "The ID of the parent folders which contain the file."
+                    },
                     "info": "The IDs of the parent folders which contain the file.If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.",
                     "required": false
                 },
@@ -2813,7 +2689,8 @@
                 },
                 {
                     "name": "space",
-                    "type": "String",
+                    "type": "Select",
+                    "options":["drive","appDataFolder"],
                     "info": "The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.",
                     "required": false
                 }
@@ -3083,178 +2960,6 @@
                             "supportsTeamDrives",
                             "teamDriveId",
                             "fields"
-                        ]
-                    }
-                ]
-            },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
-        {
-            "name": "subscribeToFileChanges",
-            "description": "Subscribes to changes to a file.",
-            "args": [
-                {
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "Access Token. Use getAccessToken to get it",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "access_token"
-                    }
-                },
-                {
-                    "name": "fileId",
-                    "type": "String",
-                    "info": "The ID of the file.",
-                    "required": true
-                },
-                {
-                    "name": "acknowledgeAbuse",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "supportsTeamDrives",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Whether the requesting application supports Team Drives. (Default: false)",
-                    "required": false
-                },
-                {
-                    "name": "kind",
-                    "type": "String",
-                    "info": "Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string \"api#channel\".",
-                    "required": false
-                },
-                {
-                    "name": "id",
-                    "type": "String",
-                    "info": "A UUID or similar unique string that identifies this channel.",
-                    "required": false
-                },
-                {
-                    "name": "resourceId",
-                    "type": "String",
-                    "info": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.",
-                    "required": false
-                },
-                {
-                    "name": "resourceUri",
-                    "type": "String",
-                    "info": "A version-specific identifier for the watched resource.",
-                    "required": false
-                },
-                {
-                    "name": "token",
-                    "type": "String",
-                    "info": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.",
-                    "required": false
-                },
-                {
-                    "name": "expiration",
-                    "type": "DatePicker",
-                    "info": "Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.",
-                    "required": false
-                },
-                {
-                    "name": "type",
-                    "type": "String",
-                    "info": "The type of delivery mechanism used for this channel.",
-                    "required": false
-                },
-                {
-                    "name": "address",
-                    "type": "String",
-                    "info": "The address where notifications are delivered for this channel",
-                    "required": false
-                },
-                {
-                    "name": "payload",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "A Boolean value to indicate whether payload is wanted.",
-                    "required": false
-                },
-                {
-                    "name": "params",
-                    "type": "Array",
-                    "structure": [
-                        {
-                            "name": "key",
-                            "type": "String",
-                            "info": "Declares a new parameter by name.",
-                            "required": true
-                        },
-                        {
-                            "name": "value",
-                            "type": "String",
-                            "info": "Value for new parameter.",
-                            "required": true
-                        }
-                    ],
-                    "info": "Additional parameters controlling delivery channel behavior. Optional.",
-                    "required": false
-                },
-                {
-                    "name": "fields",
-                    "type": "List",
-                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
-                    "required": false,
-                    "structure": {
-                        "name": "field",
-                        "type": "String",
-                        "info": "Single filed name.To display all fields, use `*`."
-                    },
-                    "vendorSchema": {
-                        "format": "toString:{,}"
-                    }
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.googleapis.com\/drive\/v3\/files\/{$data['fileId']}\/watch",
-                "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "access_token",
-                            "acknowledgeAbuse",
-                            "supportsTeamDrives"
-                        ]
-                    },
-                    {
-                        "type": "json",
-                        "parameters": [
-                            "kind",
-                            "id",
-                            "resourceId",
-                            "resourceUri",
-                            "token",
-                            "expiration",
-                            "type",
-                            "address",
-                            "payload",
-                            "params"
                         ]
                     }
                 ]
@@ -3583,12 +3288,6 @@
                     "required": true
                 },
                 {
-                    "name": "permissionId",
-                    "type": "String",
-                    "info": "The permissionId of the file.",
-                    "required": true
-                },
-                {
                     "name": "pageSize",
                     "type": "Number",
                     "info": "The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned. Acceptable values are 1 to 100, inclusive.",
@@ -3612,29 +3311,6 @@
                     "toString": true
                 },
                 {
-                    "name": "kind",
-                    "type": "String",
-                    "info": "Identifies what kind of resource this is. Value: the fixed string `drive#permissionList`.",
-                    "required": false
-                },
-                {
-                    "name": "permissions",
-                    "type": "List",
-                    "info": "The list of permissions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
-                    "required": false,
-                    "structure": {
-                        "name": "permission",
-                        "type": "String",
-                        "info": "Single permission."
-                    }
-                },
-                {
-                    "name": "nextPageToken",
-                    "type": "String",
-                    "info": "The page token for the next page of permissions. This field will be absent if the end of the permissions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.",
-                    "required": false
-                },
-                {
                     "name": "fields",
                     "type": "List",
                     "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
@@ -3650,7 +3326,7 @@
                 }
             ],
             "vendorRequest": {
-                "url": "https:\/\/www.googleapis.com\/drive\/v3\/files\/{$data['fileId']}\/permissions/{$data['permissionId']}",
+                "url": "https:\/\/www.googleapis.com\/drive\/v3\/files\/{$data['fileId']}\/permissions",
                 "method": "get",
                 "requestParameters": [
                     {
@@ -3660,14 +3336,6 @@
                             "pageSize",
                             "pageToken",
                             "supportsTeamDrives"
-                        ]
-                    },
-                    {
-                        "type": "json",
-                        "parameters": [
-                            "kind",
-                            "permissions",
-                            "nextPageToken"
                         ]
                     }
                 ]

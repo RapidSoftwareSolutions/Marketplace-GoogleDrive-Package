@@ -15,7 +15,7 @@ $app->post('/api/GoogleDrive/getFileRevisions', function ($request, $response) {
     $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId'];
     $optionalParams = ['pageSize'=>'pageSize','pageToken'=>'pageToken','fields'=>'fields'];
     $bodyParams = [
-       'query' => ['access_token','pageSize','pageToken']
+       'query' => ['access_token','pageSize','pageToken','fields']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

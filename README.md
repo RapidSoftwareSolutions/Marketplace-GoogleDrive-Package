@@ -161,7 +161,7 @@ Lists a file's comments.
 | includeDeleted   | Select| Whether to include deleted comments. Deleted comments will not include their original content. (Default: false)
 | pageSize         | Number| The maximum number of comments to return per page. Acceptable values are 1 to 100, inclusive. (Default: 20)
 | pageToken        | String| The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-| startModifiedTime| String| The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).
+| startModifiedTime| DatePicker| The minimum value of 'modifiedTime' for the result comments (RFC 3339 date-time).
 | fields           | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.updateFileComment
@@ -416,7 +416,7 @@ Lists or searches files.
 | fields               | List  | List of fields. To display all fields, use `*`.Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.updateMultipartFile
-Updates a file's metadata and/or content with patch semantics.
+A updateFileFromMultipartData is the most straightforward method for updating a file.
 
 | Field                     | Type      | Description
 |---------------------------|-----------|----------

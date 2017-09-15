@@ -26,7 +26,25 @@ $app->post('/api/GoogleDrive/updateFileFromMultipartData', function ($request, $
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/upload/drive/v3/files/{$data['fileId']}";
 
-    
+    if(!empty($data['modifiedTime']))
+    {
+        $time = strtotime($data['modifiedTime']);
+
+        if($time !== false)
+        {
+            $data['modifiedTime'] =  date('Y-m-d\TH:i:s\Z',$time);
+        }
+    }
+
+    if(!empty($data['viewedByMeTime']))
+    {
+        $time = strtotime($data['viewedByMeTime']);
+
+        if($time !== false)
+        {
+            $data['viewedByMeTime'] =  date('Y-m-d\TH:i:s\Z',$time);
+        }
+    }
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['access_token']}"];
