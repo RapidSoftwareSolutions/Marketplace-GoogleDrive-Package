@@ -4,7 +4,7 @@ $app->post('/api/GoogleDrive/updateCommentReply', function ($request, $response)
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','commentId','content']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','commentId','content','fields']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,10 +12,10 @@ $app->post('/api/GoogleDrive/updateCommentReply', function ($request, $response)
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','commentId'=>'commentId','content'=>'content'];
+    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','commentId'=>'commentId','content'=>'content','fields'=>'fields'];
     $optionalParams = ['replyId'=>'replyId'];
     $bodyParams = [
-       'query' => ['access_token'],
+       'query' => ['access_token','fields'],
        'json' => ['content']
     ];
 

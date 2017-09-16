@@ -21,7 +21,10 @@ $app->post('/api/GoogleDrive/updateFileFromMultipartData', function ($request, $
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = \Models\Params::toString($data['fields'], ',');
+    }
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/upload/drive/v3/files/{$data['fileId']}";

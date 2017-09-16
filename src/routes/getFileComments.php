@@ -25,6 +25,17 @@ $app->post('/api/GoogleDrive/getFileComments', function ($request, $response) {
     {
         $data['fields'] = \Models\Params::toString($data['fields'], ',');
     }
+
+    if(!empty($data['startModifiedTime']))
+    {
+        $time = strtotime($data['startModifiedTime']);
+
+        if($time !== false)
+        {
+            $data['startModifiedTime'] =  date('Y-m-d\TH:i:s\Z',$time);
+        }
+    }
+
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/drive/v3/files/{$data['fileId']}/comments";
 

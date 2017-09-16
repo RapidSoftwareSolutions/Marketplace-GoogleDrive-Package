@@ -410,12 +410,12 @@
                 {
                     "name": "fields",
                     "type": "List",
-                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "info": "List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
                     "required": false,
                     "structure": {
                         "name": "field",
                         "type": "String",
-                        "info": "Single filed name.To display all fields, use `*`."
+                        "info": "Single filed name."
                     },
                     "vendorSchema": {
                         "format": "toString:{,}"
@@ -3810,13 +3810,27 @@
                     "name": "replyId",
                     "type": "String",
                     "info": "The ID of the reply.",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "content",
                     "type": "String",
                     "info": "The plain text content of the reply. This field is used for setting the content, while htmlContent should be displayed. This is required on creates if no action is specified.",
                     "required": true
+                },
+                {
+                    "name": "fields",
+                    "type": "List",
+                    "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
+                    "required": true,
+                    "structure": {
+                        "name": "field",
+                        "type": "String",
+                        "info": "Single filed name.To display all fields, use `*`."
+                    },
+                    "vendorSchema": {
+                        "format": "toString:{,}"
+                    }
                 }
             ],
             "vendorRequest": {
@@ -3826,7 +3840,8 @@
                     {
                         "type": "query",
                         "parameters": [
-                            "access_token"
+                            "access_token",
+                            "fields"
                         ]
                     },
                     {

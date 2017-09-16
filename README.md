@@ -81,7 +81,7 @@ Lists the changes for a user or Team Drive.
 | spaces               | List  | A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
 | supportsTeamDrives   | Select| Whether the requesting application supports Team Drives. (Default: false)
 | teamDriveId          | String| The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
-| fields               | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
+| fields               | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.subscribeToUserChanges
 Subscribes to changes for a user.

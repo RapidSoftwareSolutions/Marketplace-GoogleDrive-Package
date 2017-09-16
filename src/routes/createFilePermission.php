@@ -15,7 +15,7 @@ $app->post('/api/GoogleDrive/createFilePermission', function ($request, $respons
     $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','role'=>'role','type'=>'type'];
     $optionalParams = ['emailMessage'=>'emailMessage','sendNotificationEmail'=>'sendNotificationEmail','supportsTeamDrives'=>'supportsTeamDrives','transferOwnership'=>'transferOwnership','allowFileDiscovery'=>'allowFileDiscovery','domain'=>'domain','emailAddress'=>'emailAddress','fields'=>'fields'];
     $bodyParams = [
-       'query' => ['access_token','emailMessage','sendNotificationEmail','supportsTeamDrives','transferOwnership'],
+       'query' => ['access_token','emailMessage','sendNotificationEmail','supportsTeamDrives','transferOwnership','fields'],
        'json' => ['role','type','allowFileDiscovery','domain','emailAddress']
     ];
 
@@ -34,7 +34,7 @@ $app->post('/api/GoogleDrive/createFilePermission', function ($request, $respons
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
+    $requestParams['headers'] = ["Authorization"=>"Bearer {$data['access_token']}"];
      
 
     try {

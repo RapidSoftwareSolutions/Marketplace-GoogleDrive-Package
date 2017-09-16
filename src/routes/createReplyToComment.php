@@ -21,15 +21,18 @@ $app->post('/api/GoogleDrive/createReplyToComment', function ($request, $respons
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
     
-    $data['fields'] = \Models\Params::toString($data['fields'], ','); 
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/drive/v3/files/{$data['fileId']}/comments/{$data['commentId']}/replies?access_token={$data['access_token']}";
 
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = \Models\Params::toString($data['fields'], ',');
+    }
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
+    $requestParams['headers'] = ["Authorization"=>"Bearer {$data['access_token']}"];
     $requestParams['query'] = $data['fields'];
 
     try {
