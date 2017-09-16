@@ -3655,7 +3655,7 @@
                     "name": "fields",
                     "type": "List",
                     "info": "List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes",
-                    "required": false,
+                    "required": true,
                     "structure": {
                         "name": "field",
                         "type": "String",

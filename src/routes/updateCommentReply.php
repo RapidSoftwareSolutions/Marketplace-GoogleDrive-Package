@@ -21,7 +21,12 @@ $app->post('/api/GoogleDrive/updateCommentReply', function ($request, $response)
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+
+    if(!empty($data['fields']))
+    {
+        $data['fields'] = \Models\Params::toString($data['fields'], ',');
+    }
+
 
     $client = $this->httpClient;
     $query_str = "https://www.googleapis.com/drive/v3/files/{$data['fileId']}/comments/{$data['commentId']}/replies/{$data['replyId']}";
@@ -31,7 +36,7 @@ $app->post('/api/GoogleDrive/updateCommentReply', function ($request, $response)
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
      
-
+   
     try {
         $resp = $client->patch($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();

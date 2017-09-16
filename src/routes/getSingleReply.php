@@ -4,7 +4,7 @@ $app->post('/api/GoogleDrive/getSingleReply', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','commentId','replyId']);
+    $validateRes = $checkRequest->validate($request, ['accessToken','fileId','commentId','replyId','fields']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/GoogleDrive/getSingleReply', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['accessToken'=>'access_token','fileId'=>'fileId','commentId'=>'commentId','replyId'=>'replyId'];
-    $optionalParams = ['includeDeleted'=>'includeDeleted','fields'=>'fields'];
+    $requiredParams = ['accessToken'=>'access_token','fields'=>'fields','fileId'=>'fileId','commentId'=>'commentId','replyId'=>'replyId'];
+    $optionalParams = ['includeDeleted'=>'includeDeleted'];
     $bodyParams = [
        'query' => ['access_token','fields','includeDeleted']
     ];
