@@ -33,8 +33,8 @@ $app->post('/api/GoogleDrive/createReplyToComment', function ($request, $respons
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = ["Authorization"=>"Bearer {$data['access_token']}"];
-    $requestParams['query'] = $data['fields'];
-
+    $requestParams['query'] = array('fields' => $data['fields']);
+ 
     try {
         $resp = $client->post($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();

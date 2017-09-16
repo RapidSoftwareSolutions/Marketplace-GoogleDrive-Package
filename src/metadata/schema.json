@@ -3499,7 +3499,7 @@
                     "name": "content",
                     "type": "String",
                     "info": "The plain text content of the reply. This field is used for setting the content, while htmlContent should be displayed. This is required on creates if no action is specified.",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "fields",
