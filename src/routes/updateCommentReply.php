@@ -36,7 +36,7 @@ $app->post('/api/GoogleDrive/updateCommentReply', function ($request, $response)
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
      
-   
+
     try {
         $resp = $client->patch($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();

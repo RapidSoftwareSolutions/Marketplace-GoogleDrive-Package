@@ -83,23 +83,6 @@ Lists the changes for a user or Team Drive.
 | teamDriveId          | String| The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
 | fields               | List  | List of fields. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
-## GoogleDrive.subscribeToUserChanges
-Subscribes to changes for a user.
-
-| Field                | Type  | Description
-|----------------------|-------|----------
-| accessToken          | String| Access Token. Use getAccessToken to get it
-| pageToken            | String| The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-| includeCorpusRemovals| Select| Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file. (Default: false)
-| includeRemoved       | Select| Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access. (Default: true)
-| includeTeamDriveItems| Select| Whether Team Drive files or changes should be included in results. (Default: false)
-| pageSize             | Number| The maximum number of changes to return per page. Acceptable values are 1 to 1000, inclusive. (Default: 100)
-| restrictToMyDrive    | Select| Whether to restrict the results to changes inside the My Drive hierarchy. This omits changes to files such as those in the Application Data folder or shared files which have not been added to My Drive. (Default: false)
-| spaces               | List  | A comma-separated list of spaces to query within the user corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
-| supportsTeamDrives   | Select| Whether the requesting application supports Team Drives. (Default: false)
-| teamDriveId          | String| The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
-| fields               | List  | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
-
 ## GoogleDrive.stopWatchingChannelResources
 Stop watching resources through this channel.
 
@@ -414,58 +397,6 @@ Lists or searches files.
 | supportsTeamDrives   | Select| Whether the requesting application supports Team Drives. (Default: false)
 | teamDriveId          | String| ID of Team Drive to search
 | fields               | List  | List of fields. To display all fields, use `*`.Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
-
-## GoogleDrive.updateMultipartFile
-A updateFileFromMultipartData is the most straightforward method for updating a file.
-
-| Field                     | Type      | Description
-|---------------------------|-----------|----------
-| accessToken               | String    | Access Token. Use getAccessToken to get it
-| fileId                    | String    | The ID of the file.
-| addParents                | List      | A comma-separated list of parent IDs to add.
-| contentType               | String    | Set to the MIME media type of the object being uploaded.
-| uploadFile                | File      | Upload file.
-| keepRevisionForever       | Select    | Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Drive. (Default: false)
-| ocrLanguage               | String    | A language hint for OCR processing during image import (ISO 639-1 code).
-| removeParents             | List      | A comma-separated list of parent IDs to remove.
-| supportsTeamDrives        | Select    | Whether the requesting application supports Team Drives. (Default: false)
-| useContentAsIndexableText | Select    | Whether to use the uploaded content as indexable text. (Default: false)
-| appProperties             | Array     | A collection of arbitrary key-value pairs which are private to the requesting app. Entries with null values are cleared in update and copy requests.
-| contentHintsIndexableText | String    | Text to be indexed for the file to improve fullText queries. This is limited to 128KB in length and may contain HTML elements.
-| contentHintsThumbnailImage| String    | The thumbnail data encoded with URL-safe Base64 (RFC 4648 section 5).
-| contentHintsMimeType      | String    | The MIME type of the thumbnail.
-| description               | String    | A short description of the file.
-| mimeType                  | String    | The MIME type of the file.Drive will attempt to automatically detect an appropriate value from uploaded content if no value is provided. The value cannot be changed unless a new revision is uploaded.If a file is created with a Google Doc MIME type, the uploaded content will be imported if possible. The supported import formats are published in the About resource.
-| modifiedTime              | DatePicker| The last time the file was modified by anyone (RFC 3339 date-time).Note that setting modifiedTime will also update modifiedByMeTime for the user.
-| name                      | String    | The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of Team Drives, My Drive root folder, and Application Data folder the name is constant.
-| originalFilename          | String    | The original filename of the uploaded content if available, or else the original value of the name field. This is only available for files with binary content in Drive.
-| parents                   | List      | The IDs of the parent folders which contain the file.If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.
-| properties                | Array     | A collection of arbitrary key-value pairs which are visible to all apps. Entries with null values are cleared in update and copy requests.
-| starred                   | Select    | The IDs of the parent folders which contain the file.If not specified as part of a create request, the file will be placed directly in the My Drive folder. Update requests must use the addParents and removeParents parameters to modify the values.
-| viewedByMeTime            | DatePicker| The last time the file was viewed by the user (RFC 3339 date-time).
-| viewersCanCopyContent     | Select    | Whether users with only reader or commenter permission can copy the file's content. This affects copy, download, and print operations.
-| writersCanShare           | Select    | Whether users with only writer permission can modify the file's permissions. Not populated for Team Drive files.
-
-## GoogleDrive.subscribeToFileChanges
-Subscribes to changes to a file.
-
-| Field             | Type      | Description
-|-------------------|-----------|----------
-| accessToken       | String    | Access Token. Use getAccessToken to get it
-| fileId            | String    | The ID of the file.
-| acknowledgeAbuse  | Select    | Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media. (Default: false)
-| supportsTeamDrives| Select    | Whether the requesting application supports Team Drives. (Default: false)
-| kind              | String    | Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string "api#channel".
-| id                | String    | A UUID or similar unique string that identifies this channel.
-| resourceId        | String    | An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
-| resourceUri       | String    | A version-specific identifier for the watched resource.
-| token             | String    | An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
-| expiration        | DatePicker| Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
-| type              | String    | The type of delivery mechanism used for this channel.
-| address           | String    | The address where notifications are delivered for this channel
-| payload           | Select    | A Boolean value to indicate whether payload is wanted.
-| params            | Array     | Additional parameters controlling delivery channel behavior. Optional.
-| fields            | List      | List of fields.To display all fields, use `*`. Examples: kind, user, storageQuota, importFormats, exportFormats, maxImportSizes, maxUploadSize, appInstalled, folderColorPalette, teamDriveThemes
 
 ## GoogleDrive.createFilePermission
 Creates a permission for a file or Team Drive.
